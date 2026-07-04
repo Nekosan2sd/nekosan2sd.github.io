@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TKD株式会社</title>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#f4f6f8;
+}
+
+header{
+    background:#003366;
+    color:white;
+    padding:20px;
+}
+
+nav a{
+    color:white;
+    margin-right:20px;
+    text-decoration:none;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+    background:white;
+}
+
+.hero img{
+    max-width:300px;
+    width:100%;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+section{
+    padding:40px 20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>TKD株式会社</h2>
+<nav>
+  #about会社概要</a>
+  #service事業内容</a>
+  #developer開発者</a>
+  #contactお問い合わせ</a>
+</nav>
+</header>
+
+<div class="hero">
+IMG_2168.jpeg
+
+<h1>未来を支えるテクノロジー</h1>
+<p>TKD株式会社の公式ホームページへようこそ。</p>
+</div>
+
+<section id="about">
+<div class="card">
+<h2>会社概要</h2>
+<p>TKD株式会社は、ITサービスとデジタルソリューションを提供する企業です。</p>
+</div>
+
+<div class="card" id="service">
+<h2>事業内容</h2>
+<p>Web制作、システム開発、クラウド導入支援を行っています。</p>
+</div>
+
+<div class="card" id="developer">
+<h2>開発者</h2>
+
+<h3>Nekosan2sd</h3>
+
+<p>
+このサイトを作った人です。<br>
+最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。
+</p>
+
+<h4>好きなもの</h4>
+<ul>
+  <li>プログラミング</li>
+  <li>ゲーム</li>
+  <li>猫 🐱</li>
+</ul>
+
+<h4>一言</h4>
+<p>「なんか作るの楽しい。」</p>
+</div>
+
+<div class="card" id="contact">
+<h2>お問い合わせ</h2>
+<p>メール: info@tkd.example</p>
+</div>
+</section>
+
+<footer>
+© 2026 TKD株式会社
+</footer>
+
+</body>
+</html>
