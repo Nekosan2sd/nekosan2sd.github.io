@@ -10,6 +10,7 @@ body{
     margin:0;
     font-family:sans-serif;
     background:#f4f6f8;
+    color:#222;
 }
 
 header{
@@ -18,10 +19,19 @@ header{
     padding:20px;
 }
 
+header h2{
+    margin:0 0 10px 0;
+}
+
 nav a{
     color:white;
     margin-right:20px;
     text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    text-decoration:underline;
 }
 
 .hero{
@@ -39,6 +49,11 @@ nav a{
 
 .hero h1{
     font-size:40px;
+    margin:10px 0;
+}
+
+.hero p{
+    font-size:18px;
 }
 
 section{
@@ -54,11 +69,28 @@ section{
     border-radius:10px;
 }
 
+.card h2{
+    margin-top:0;
+    color:#003366;
+}
+
 footer{
     background:#003366;
     color:white;
     text-align:center;
     padding:20px;
+    margin-top:40px;
+}
+
+@media screen and (max-width:600px){
+    .hero h1{
+        font-size:28px;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:5px 10px 5px 0;
+    }
 }
 </style>
 </head>
@@ -76,9 +108,9 @@ footer{
 </header>
 
 <div class="hero">
-IMG_2168.jpeg
+<img 168.jpeg
 
-<h1>未来を支える落ちてるパスタ</h1>
+<h1>未来を支えるテクノロジー</h1>
 <p>TKD株式会社の公式ホームページへようこそ。</p>
 </div>
 
@@ -94,7 +126,10 @@ TKD株式会社は、勢いだけで設立された伝説の企業です。<br>
 
 <div class="card" id="service">
 <h2>事業内容</h2>
-<p>Web制作、システム開発、クラウド導入支援を行っています。</p>
+<p>
+Web制作、システム開発、クラウド導入支援を行っています。<br>
+現在は主に、面白そうなものを勢いで作る活動に力を入れています。
+</p>
 </div>
 
 <div class="card" id="developer">
@@ -104,7 +139,7 @@ TKD株式会社は、勢いだけで設立された伝説の企業です。<br>
 
 <p>
 このサイトを作った人です。<br>
-最近GitHub Pagesを覚えて、勢いでこれを作りました。
+最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。
 </p>
 
 <h4>好きなもの</h4>
@@ -120,7 +155,10 @@ TKD株式会社は、勢いだけで設立された伝説の企業です。<br>
 
 <div class="card" id="contact">
 <h2>お問い合わせ</h2>
-<p>メール: info@tkd.example</p>
+<p>
+メール: info@tkd.example<br>
+※このメールアドレスはサンプルです。
+</p>
 </div>
 </section>
 
