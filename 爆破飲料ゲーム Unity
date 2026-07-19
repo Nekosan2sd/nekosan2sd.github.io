@@ -1,0 +1,617 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class BakuhaInryoGame : MonoBehaviour
+{
+    [System.Serializable]
+    public class Drink
+    {
+        public string name;
+        public int rarity;
+        public int damage;
+        public int heal;
+        public int critBonus;
+        public string description;
+
+        public Drink(string name, int rarity, int damage, int heal, int critBonus, string description)
+        {
+            this.name = name;
+            this.rarity = rarity;
+            this.damage = damage;
+            this.heal = heal;
+            this.critBonus = critBonus;
+            this.description = description;
+        }
+    }
+
+    [Header("UI")]
+    public GameObject titlePanel;
+    public GameObject gamePanel;
+    public GameObject gameOverPanel;
+
+    public TMP_Text titleText;
+    public TMP_Text statusText;
+    public TMP_Text enemyText;
+    public TMP_Text drinkText;
+    public TMP_Text logText;
+    public TMP_Text scoreText;
+    public TMP_Text gameOverText;
+
+    public Slider playerHpBar;
+    public Slider enemyHpBar;
+    public Slider expBar;
+
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip gachaSE;
+    public AudioClip attackSE;
+    public AudioClip criticalSE;
+    public AudioClip winSE;
+    public AudioClip loseSE;
+    public AudioClip levelUpSE;
+
+    [Header("Player")]
+    public int level = 1;
+    public int exp = 0;
+    public int expToNext = 100;
+    public int maxHp = 100;
+    public int hp = 100;
+    public int baseAttack = 15;
+
+    [Header("Enemy")]
+    public int stage = 1;
+    public int enemyMaxHp = 60;
+    public int enemyHp = 60;
+    public int enemyAttack = 10;
+    public string enemyName = "炭酸スライム";
+
+    [Header("Game")]
+    public int score = 0;
+    public int bestScore = 0;
+    public int researchPoint = 0;
+
+    private bool battleActive = false;
+    private bool hasDrink = false;
+    private Drink currentDrink;
+
+    private List<string> commonNames = new List<string>()
+    {
+        "コーラ爆弾",
+        "ラムネ弾",
+        "サイダー爆竹",
+        "微炭酸パンチ",
+        "メロンソーダ玉"
+    };
+
+    private List<string> rareNames = new List<string>()
+    {
+        "エナジーキャノン",
+        "強炭酸ミサイル",
+        "カフェインレーザー",
+        "スパークリング地雷",
+        "爆裂ジンジャー"
+    };
+
+    private List<string> epicNames = new List<string>()
+    {
+        "核融合ラムネ",
+        "ブラックホールカルピス",
+        "時空ねじれサイダー",
+        "超炭酸コーラΩ",
+        "マグマメロンソーダ"
+    };
+
+    private List<string> legendaryNames = new List<string>()
+    {
+        "神の炭酸",
+        "終焉のエナジードリンク",
+        "銀河崩壊コーラ",
+        "創世ラムネ",
+        "爆破飲料・零式"
+    };
+
+    void Start()
+    {
+        LoadPermanentData();
+
+        if (titlePanel != null) titlePanel.SetActive(true);
+        if (gamePanel != null) gamePanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+        if (titleText != null)
+        {
+            titleText.text = "爆破飲料\n\nガチャで飲料を引いて敵を爆破しろ！";
+        }
+
+        UpdateUI();
+    }
+
+    public void StartGame()
+    {
+        level = 1;
+        exp = 0;
+        expToNext = 100;
+
+        maxHp = 100 + researchPoint * 5;
+        hp = maxHp;
+        baseAttack = 15 + researchPoint * 2;
+
+        stage = 1;
+        score = 0;
+        hasDrink = false;
+        battleActive = true;
+
+        SetupEnemy();
+
+        if (titlePanel != null) titlePanel.SetActive(false);
+        if (gamePanel != null) gamePanel.SetActive(true);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+        SetLog("ゲーム開始！\nまずは飲料ガチャを引け！");
+        UpdateUI();
+    }
+
+    public void DrawDrink()
+    {
+        if (!battleActive) return;
+
+        currentDrink = CreateRandomDrink();
+        hasDrink = true;
+
+        if (currentDrink.heal > 0)
+        {
+            hp += currentDrink.heal;
+            if (hp > maxHp) hp = maxHp;
+        }
+
+        PlaySE(gachaSE);
+
+        SetLog(
+            "ガチャ結果！\n" +
+            GetStars(currentDrink.rarity) + " " + currentDrink.name + "\n" +
+            currentDrink.description
+        );
+
+        UpdateUI();
+    }
+
+    public void AttackEnemy()
+    {
+        if (!battleActive) return;
+
+        if (!hasDrink)
+        {
+            SetLog("まだ飲料を持っていない！\n先にガチャを引こう！");
+            return;
+        }
+
+        int randomBonus = Random.Range(0, 8 + level);
+        int damage = baseAttack + currentDrink.damage + randomBonus;
+
+        int critRate = 5 + currentDrink.rarity * 4 + currentDrink.critBonus;
+        bool critical = Random.Range(0, 100) < critRate;
+
+        if (critical)
+        {
+            damage *= 2;
+            PlaySE(criticalSE);
+        }
+        else
+        {
+            PlaySE(attackSE);
+        }
+
+        enemyHp -= damage;
+        if (enemyHp < 0) enemyHp = 0;
+
+        string attackLog =
+            currentDrink.name + "を投げた！\n" +
+            enemyName + "に " + damage + " ダメージ！";
+
+        if (critical)
+        {
+            attackLog += "\n💥 超爆発クリティカル！！";
+        }
+
+        hasDrink = false;
+
+        if (enemyHp <= 0)
+        {
+            SetLog(attackLog);
+            WinBattle();
+            return;
+        }
+
+        SetLog(attackLog);
+        EnemyTurn();
+        UpdateUI();
+    }
+
+    void EnemyTurn()
+    {
+        if (!battleActive) return;
+
+        int damage = enemyAttack + Random.Range(0, stage + 3);
+        hp -= damage;
+
+        if (hp < 0) hp = 0;
+
+        AddLog(enemyName + "の反撃！\n" + damage + " ダメージを受けた！");
+
+        if (hp <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    void WinBattle()
+    {
+        PlaySE(winSE);
+
+        int gainedScore = 100 + stage * 30 + currentDrink.rarity * 50;
+        int gainedExp = 40 + stage * 10;
+
+        if (stage % 5 == 0)
+        {
+            gainedScore *= 2;
+            gainedExp *= 2;
+        }
+
+        score += gainedScore;
+        exp += gainedExp;
+
+        AddLog(
+            enemyName + "を撃破！\n" +
+            "スコア +" + gainedScore + "\n" +
+            "経験値 +" + gainedExp
+        );
+
+        CheckLevelUp();
+
+        stage++;
+
+        if (stage > 30)
+        {
+            GameClear();
+            return;
+        }
+
+        SetupEnemy();
+
+        AddLog("ステージ " + stage + " に進んだ！");
+        UpdateUI();
+    }
+
+    void CheckLevelUp()
+    {
+        while (exp >= expToNext)
+        {
+            exp -= expToNext;
+            level++;
+
+            maxHp += 20;
+            hp = maxHp;
+            baseAttack += 5;
+            expToNext += 50;
+
+            PlaySE(levelUpSE);
+
+            AddLog("レベルアップ！ Lv." + level + "\n最大HPと攻撃力が上がった！");
+        }
+    }
+
+    void SetupEnemy()
+    {
+        bool boss = stage % 5 == 0;
+
+        if (boss)
+        {
+            enemyName = GetBossName(stage);
+            enemyMaxHp = 120 + stage * 35;
+            enemyAttack = 18 + stage * 4;
+        }
+        else
+        {
+            enemyName = GetEnemyName(stage);
+            enemyMaxHp = 50 + stage * 18;
+            enemyAttack = 8 + stage * 3;
+        }
+
+        enemyHp = enemyMaxHp;
+    }
+
+    Drink CreateRandomDrink()
+    {
+        int r = Random.Range(0, 100);
+
+        if (r < 50)
+        {
+            string name = commonNames[Random.Range(0, commonNames.Count)];
+            return new Drink(
+                name,
+                1,
+                Random.Range(15, 26),
+                0,
+                0,
+                "普通の爆破飲料。安定した威力。"
+            );
+        }
+        else if (r < 80)
+        {
+            string name = rareNames[Random.Range(0, rareNames.Count)];
+            return new Drink(
+                name,
+                2,
+                Random.Range(30, 46),
+                5,
+                2,
+                "少し強い飲料。ついでに少し回復する。"
+            );
+        }
+        else if (r < 94)
+        {
+            string name = epicNames[Random.Range(0, epicNames.Count)];
+            return new Drink(
+                name,
+                3,
+                Random.Range(55, 81),
+                10,
+                5,
+                "かなり強い飲料。クリティカルも出やすい。"
+            );
+        }
+        else if (r < 99)
+        {
+            string name = epicNames[Random.Range(0, epicNames.Count)] + "・改";
+            return new Drink(
+                name,
+                4,
+                Random.Range(90, 131),
+                20,
+                10,
+                "超レア飲料。火力も回復も強い。"
+            );
+        }
+        else
+        {
+            string name = legendaryNames[Random.Range(0, legendaryNames.Count)];
+            return new Drink(
+                name,
+                5,
+                Random.Range(180, 251),
+                35,
+                20,
+                "伝説の飲料。出たらほぼ勝ち。"
+            );
+        }
+    }
+
+    string GetStars(int rarity)
+    {
+        string stars = "";
+
+        for (int i = 0; i < rarity; i++)
+        {
+            stars += "★";
+        }
+
+        return stars;
+    }
+
+    string GetEnemyName(int currentStage)
+    {
+        string[] names =
+        {
+            "炭酸スライム",
+            "こぼれたコーラ",
+            "暴走自販機",
+            "ラムネゴブリン",
+            "カフェイン亡者",
+            "ペットボトル兵",
+            "炭酸ゾンビ",
+            "冷蔵庫ミミック"
+        };
+
+        return names[Random.Range(0, names.Length)];
+    }
+
+    string GetBossName(int currentStage)
+    {
+        if (currentStage == 5) return "ボス：炭酸王";
+        if (currentStage == 10) return "ボス：ラムネ神";
+        if (currentStage == 15) return "ボス：自販機ドラゴン";
+        if (currentStage == 20) return "ボス：飲料メーカーCEO";
+        if (currentStage == 25) return "ボス：銀河炭酸帝王";
+        return "ラスボス：爆破飲料そのもの";
+    }
+
+    void GameOver()
+    {
+        battleActive = false;
+        PlaySE(loseSE);
+
+        if (score > bestScore)
+        {
+            bestScore = score;
+        }
+
+        int gainedResearch = Mathf.Max(1, stage / 2);
+        researchPoint += gainedResearch;
+
+        SavePermanentData();
+
+        if (gamePanel != null) gamePanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+
+        if (gameOverText != null)
+        {
+            gameOverText.text =
+                "ゲームオーバー\n\n" +
+                "到達ステージ：" + stage + "\n" +
+                "スコア：" + score + "\n" +
+                "ベスト：" + bestScore + "\n\n" +
+                "研究ポイント +" + gainedResearch + "\n" +
+                "次回から少し強くなる！";
+        }
+
+        UpdateUI();
+    }
+
+    void GameClear()
+    {
+        battleActive = false;
+        PlaySE(winSE);
+
+        score += 5000;
+
+        if (score > bestScore)
+        {
+            bestScore = score;
+        }
+
+        researchPoint += 20;
+        SavePermanentData();
+
+        if (gamePanel != null) gamePanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+
+        if (gameOverText != null)
+        {
+            gameOverText.text =
+                "完全クリア！！\n\n" +
+                "爆破飲料を極めた！\n" +
+                "最終スコア：" + score + "\n" +
+                "ベスト：" + bestScore + "\n\n" +
+                "研究ポイント +20";
+        }
+
+        UpdateUI();
+    }
+
+    public void RestartGame()
+    {
+        StartGame();
+    }
+
+    public void BackToTitle()
+    {
+        battleActive = false;
+
+        if (titlePanel != null) titlePanel.SetActive(true);
+        if (gamePanel != null) gamePanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+
+        UpdateUI();
+    }
+
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteKey("BestScore");
+        PlayerPrefs.DeleteKey("ResearchPoint");
+        PlayerPrefs.Save();
+
+        bestScore = 0;
+        researchPoint = 0;
+
+        SetLog("セーブデータをリセットした！");
+        UpdateUI();
+    }
+
+    void SavePermanentData()
+    {
+        PlayerPrefs.SetInt("BestScore", bestScore);
+        PlayerPrefs.SetInt("ResearchPoint", researchPoint);
+        PlayerPrefs.Save();
+    }
+
+    void LoadPermanentData()
+    {
+        bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        researchPoint = PlayerPrefs.GetInt("ResearchPoint", 0);
+    }
+
+    void UpdateUI()
+    {
+        if (statusText != null)
+        {
+            statusText.text =
+                "Lv." + level +
+                "\nHP " + hp + " / " + maxHp +
+                "\n攻撃力 " + baseAttack +
+                "\n研究P " + researchPoint;
+        }
+
+        if (enemyText != null)
+        {
+            enemyText.text =
+                "Stage " + stage +
+                "\n" + enemyName +
+                "\nHP " + enemyHp + " / " + enemyMaxHp +
+                "\n攻撃力 " + enemyAttack;
+        }
+
+        if (drinkText != null)
+        {
+            if (hasDrink && currentDrink != null)
+            {
+                drinkText.text =
+                    "現在の飲料\n" +
+                    GetStars(currentDrink.rarity) + " " + currentDrink.name +
+                    "\n威力 +" + currentDrink.damage +
+                    "\n回復 +" + currentDrink.heal;
+            }
+            else
+            {
+                drinkText.text = "現在の飲料\nなし\nガチャを引こう！";
+            }
+        }
+
+        if (scoreText != null)
+        {
+            scoreText.text =
+                "Score: " + score +
+                "\nBest: " + bestScore;
+        }
+
+        if (playerHpBar != null)
+        {
+            playerHpBar.value = maxHp <= 0 ? 0 : (float)hp / maxHp;
+        }
+
+        if (enemyHpBar != null)
+        {
+            enemyHpBar.value = enemyMaxHp <= 0 ? 0 : (float)enemyHp / enemyMaxHp;
+        }
+
+        if (expBar != null)
+        {
+            expBar.value = expToNext <= 0 ? 0 : (float)exp / expToNext;
+        }
+    }
+
+    void SetLog(string message)
+    {
+        if (logText != null)
+        {
+            logText.text = message;
+        }
+    }
+
+    void AddLog(string message)
+    {
+        if (logText != null)
+        {
+            logText.text += "\n\n" + message;
+        }
+    }
+
+    void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+}
