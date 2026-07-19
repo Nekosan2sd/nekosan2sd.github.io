@@ -28,7 +28,7 @@
 }
 </script>
 
-<title data-ja="TKD株式会社 | Web制作・プログラミング・ゲーム開発" data-en="TKD Co., Ltd. | Web Development, Programming, Game Development" data-ru="ТКД Co., Ltd. | Веб-разработка, программирование, разработка игр">TKD株式会社</title>
+<title data-ja="TKD株式会社 | Web制作・プログラミング・ゲーム開発" data-en="TKD Co., Ltd. | Web Development, Programming, Game Development" data-ru="ТКД Co., Ltd. | Веб-разработка, программирование, разработка игр">TKD株式会社 | Web制作・プログラミング・ゲーム開発</title>
 
 <style>
 * {
@@ -52,12 +52,44 @@ html.dark-mode {
     --shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+/* Language-specific font sizes */
+html[data-language="ja"] {
+    --base-font-size: 16px;
+    --h1-size: 40px;
+    --h2-size: 28px;
+    --h3-size: 20px;
+    --h4-size: 18px;
+    --p-size: 16px;
+    --small-size: 14px;
+}
+
+html[data-language="en"] {
+    --base-font-size: 15px;
+    --h1-size: 38px;
+    --h2-size: 26px;
+    --h3-size: 19px;
+    --h4-size: 17px;
+    --p-size: 15px;
+    --small-size: 13px;
+}
+
+html[data-language="ru"] {
+    --base-font-size: 14px;
+    --h1-size: 36px;
+    --h2-size: 24px;
+    --h3-size: 18px;
+    --h4-size: 16px;
+    --p-size: 14px;
+    --small-size: 12px;
+}
+
 body{
     margin:0;
     font-family:'Segoe UI', sans-serif;
     background:var(--bg-color);
     color:var(--text-color);
     scroll-behavior: smooth;
+    font-size: var(--base-font-size);
 }
 
 header{
@@ -206,13 +238,13 @@ nav a:hover{
 }
 
 .hero h1{
-    font-size:40px;
+    font-size: var(--h1-size);
     margin:10px 0;
     animation:fadeIn 1s ease-out 0.2s both;
 }
 
 .hero p{
-    font-size:18px;
+    font-size: var(--p-size);
     animation:fadeIn 1s ease-out 0.4s both;
 }
 
@@ -253,14 +285,24 @@ section{
 
 .card h2{
     margin-top:0;
+    font-size: var(--h2-size);
     color:var(--primary-color);
     border-bottom:2px solid var(--primary-color);
     padding-bottom:10px;
 }
 
 .card h3{
+    font-size: var(--h3-size);
     color:var(--primary-color);
     margin-top:20px;
+}
+
+.card h4{
+    font-size: var(--h4-size);
+}
+
+.card p{
+    font-size: var(--p-size);
 }
 
 .timeline{
@@ -273,6 +315,7 @@ section{
     position:relative;
     border-left:2px solid var(--primary-color);
     margin-left:10px;
+    font-size: var(--p-size);
 }
 
 .timeline li:before{
@@ -318,7 +361,12 @@ section{
 
 .portfolio-card h4 {
     margin-top:0;
+    font-size: var(--h4-size);
     color:var(--primary-color);
+}
+
+.portfolio-card p {
+    font-size: var(--p-size);
 }
 
 .tech-tags {
@@ -333,7 +381,7 @@ section{
     color:white;
     padding:4px 10px;
     border-radius:15px;
-    font-size:12px;
+    font-size: var(--small-size);
     animation:popIn 0.4s ease-out;
     cursor: pointer;
     transition: all 0.3s;
@@ -373,6 +421,7 @@ section{
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
+    font-size: var(--p-size);
 }
 
 .filter-btn:hover, .filter-btn.active {
@@ -397,6 +446,7 @@ section{
 
 .skill-category h4 {
     margin-top:0;
+    font-size: var(--h4-size);
     color:var(--primary-color);
 }
 
@@ -410,6 +460,7 @@ section{
     padding:5px 0;
     padding-left:20px;
     position:relative;
+    font-size: var(--p-size);
 }
 
 .skill-list li:before {
@@ -465,6 +516,22 @@ section{
     overflow-y: auto;
 }
 
+.modal-content h2 {
+    font-size: var(--h2-size);
+}
+
+.modal-content h3 {
+    font-size: var(--h3-size);
+}
+
+.modal-content p {
+    font-size: var(--p-size);
+}
+
+.modal-content li {
+    font-size: var(--p-size);
+}
+
 .close-modal {
     color:var(--text-color);
     float:right;
@@ -484,6 +551,7 @@ footer{
     text-align:center;
     padding:20px;
     margin-top:40px;
+    font-size: var(--p-size);
 }
 
 footer a {
@@ -514,7 +582,7 @@ footer a:hover {
     }
 
     nav a {
-        font-size:14px;
+        font-size: var(--small-size);
     }
 
     .hero{
@@ -522,11 +590,11 @@ footer a:hover {
     }
 
     .hero h1{
-        font-size:28px;
+        font-size: calc(var(--h1-size) * 0.7);
     }
 
     .hero p{
-        font-size:16px;
+        font-size: calc(var(--p-size) * 0.95);
     }
 
     section{
@@ -548,6 +616,7 @@ footer a:hover {
     .modal-content {
         width:95%;
         margin:20% auto;
+        padding:20px;
     }
 }
 
@@ -592,7 +661,7 @@ footer a:hover {
 
 <div class="hero">
 <img src="./IMG_2168.jpeg" alt="TKD" loading="lazy">
-<h1 data-ja="芸術は爆破飲料！" data-en="Art is an Explosion Drink!" data-ru="Искусство — это взрывной напиток!">芸術は爆破飲料！</h1>
+<h1 data-ja="芸術は爆破飲料！" data-en="Art is an Explosion Drink!" data-ru="Искусство — это взрывн��й напиток!">芸術は爆破飲料！</h1>
 <p data-ja="TKD株式会社の公式ホームページへようこそ。" data-en="Welcome to TKD Co., Ltd. official website." data-ru="Добро пожаловать на официальный сайт ТКД Компании.">TKD株式会社の公式ホームページへようこそ。</p>
 </div>
 
@@ -601,15 +670,15 @@ footer a:hover {
 
 <div class="card" id="about">
 <h2 data-ja="会社概要" data-en="About Us" data-ru="О нас">会社概要</h2>
-<p data-ja="TKD株式会社は、勢いだけで設立された伝説の架空企業です。<br>事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。<br>利益はまだありませんが、ロマンはあります。" data-en="TKD Co., Ltd. is a legendary fictional company established purely by momentum. Our business includes web development, programming, game research, and cat evangelism. We don't have profits yet, but we have dreams." data-ru="ТКД Компания - легендарная вымышленная компания, созданная чистым импульсом. Наша деятельность включает веб-разработку, программирование, исследование игр и проповедование котов. У нас еще нет прибыли, но у нас есть мечты.">TKD株式会社は、勢いだけで設立された伝説の架空企業です。<br>事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。<br>利益はまだありませんが、ロマンはあります。</p>
+<p data-ja="TKD株式会社は、勢いだけで設立された伝説の架空企業です。事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。" data-en="TKD Co., Ltd. is a legendary fictional company founded purely on momentum. Our business includes web development, programming, game research, and cat evangelism." data-ru="ТКД Компания — это легендарная вымышленная компания, основанная исключительно по инициативе. Наша деятельность включает веб-разработку, программирование, исследование игр и евангелизм кошек.">TKD株式会社は、勢いだけで設立された伝説の架空企業です。</p>
 </div>
 
 <div class="card" id="service">
 <h2 data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</h2>
-<p data-ja="Web制作、システム開発、クラウド導入支援を行っています。<br>現在は主に、面白そうなものを勢いで作る活動に力を入れています。" data-en="We provide web development, system development, and cloud implementation support. Currently, we focus on creating interesting things with momentum." data-ru="Мы предоставляем веб-разработку, разработку систем и поддержку внедрения облачных вычислений. В настоящее время мы сосредоточены на создании интересных вещей с размахом.">Web制作、システム開発、クラウド導入支援を行っています。<br>現在は主に、面白そうなものを勢いで作る活動に力を入れています。</p>
+<p data-ja="Web制作、システム開発、クラウド導入支援を行っています。現在は主に、面白そうなものを勢いで作る活動に力を入れています。" data-en="We provide web development, system development, and cloud implementation support. Currently, we focus on creating interesting things with momentum." data-ru="Мы предоставляем веб-разработку, разработку систем и поддержку внедрения облака. В настоящее время мы сосредоточены на создании интересных вещей с инициативой.">Web制作、システム開発、クラウド導入支援を行っています。</p>
 <h3 data-ja="主な事業" data-en="Main Services" data-ru="Основные услуги">主な事業</h3>
 <ul>
-  <li data-ja="🌐 Web制作・フロントエンド開発" data-en="🌐 Web Development & Frontend Development" data-ru="🌐 Веб-разработка и фронтенд-разработка">🌐 Web制作・フロントエンド開発</li>
+  <li data-ja="🌐 Web制作・フロントエンド開発" data-en="���� Web Development & Frontend Development" data-ru="🌐 Веб-разработка и фронтенд-разработка">🌐 Web制作・フロントエンド開発</li>
   <li data-ja="⚙️ バックエンド・システム開発" data-en="⚙️ Backend & System Development" data-ru="⚙️ Разработка бэкенда и систем">⚙️ バックエンド・システム開発</li>
   <li data-ja="🎮 ゲーム企画・開発" data-en="🎮 Game Planning & Development" data-ru="🎮 Планирование и разработка игр">🎮 ゲーム企画・開発</li>
   <li data-ja="☁️ クラウド導入支援" data-en="☁️ Cloud Implementation Support" data-ru="☁️ Поддержка внедрения облака">☁️ クラウド導入支援</li>
@@ -619,7 +688,7 @@ footer a:hover {
 
 <div class="card" id="portfolio">
 <h2 data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</h2>
-<p data-ja="過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。" data-en="Here are our past projects. Click for details." data-ru="Вот наши прошлые проекты. Щелкните для получения подробной информации.">過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。</p>
+<p data-ja="過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。" data-en="Here are our past projects. Click for details." data-ru="Вот наши прошлые проекты. Нажмите для деталей.">過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。</p>
 
 <div class="filter-controls">
   <button class="filter-btn active" onclick="filterProjects('all')" data-ja="すべて" data-en="All" data-ru="Все">すべて</button>
@@ -631,7 +700,7 @@ footer a:hover {
 <div class="portfolio-grid" id="portfolioGrid">
   <div class="portfolio-card" onclick="openModal('project1')" data-category="web">
     <h4 data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h4>
-    <p data-ja="このサイト自体！最新のWebデザインとアニメーション。" data-en="This website itself! Latest web design and animations." data-ru="Сам этот веб-сайт! Новейший веб-дизайн и анимация.">このサイト自体！最新のWebデザインとアニメーション。</p>
+    <p data-ja="このサイト自体！最新のWebデザインとアニメーション。" data-en="This website itself! Latest web design and animations." data-ru="Сам этот веб-сайт! Последний веб-дизайн и анимация.">このサイト自体！最新のWebデザインとアニメーション。</p>
     <div class="tech-tags">
       <span class="tech-tag">HTML</span>
       <span class="tech-tag">CSS</span>
@@ -641,7 +710,7 @@ footer a:hover {
 
   <div class="portfolio-card" onclick="openModal('project2')" data-category="ai">
     <h4 data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h4>
-    <p data-ja="画像から猫を自動検出するAIシステム。" data-en="AI system that automatically detects cats from images." data-ru="Система ИИ, которая автоматически обнаруживает кошек на изображениях.">画像から猫を自動検出するAIシステム。</p>
+    <p data-ja="画像から猫を自動検出するAIシステム。" data-en="AI system that automatically detects cats from images." data-ru="Система ИИ, которая автоматически обнаруживает кошек с изображений.">画像から猫を自動検出するAIシステム。</p>
     <div class="tech-tags">
       <span class="tech-tag">Python</span>
       <span class="tech-tag">TensorFlow</span>
@@ -651,7 +720,7 @@ footer a:hover {
 
   <div class="portfolio-card" onclick="openModal('project3')" data-category="game">
     <h4 data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h4>
-    <p data-ja="勢いで作ったカジュアルゲーム。意外と面白い。" data-en="A casual game made with momentum. Surprisingly fun." data-ru="Казуальная игра, созданная с размахом. Удивительно забавно.">勢いで作ったカジュアルゲーム。意外と面白い。</p>
+    <p data-ja="勢いで作ったカジュアルゲーム。意外と面白い。" data-en="A casual game made with momentum. Surprisingly fun." data-ru="Казуальная игра, созданная с инициативой. Неожиданно весело.">勢いで作ったカジュアルゲーム。意外と面白い。</p>
     <div class="tech-tags">
       <span class="tech-tag">Unity</span>
       <span class="tech-tag">C#</span>
@@ -666,7 +735,7 @@ footer a:hover {
 <div class="modal-content">
 <span class="close-modal" onclick="closeModal('project1')" aria-label="Close modal">&times;</span>
 <h2 id="project1Title" data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h2>
-<p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations. It supports dark mode and remembers visitor theme settings." data-ru="Описание: Сам этот веб-сайт. Мы использовали новейший веб-дизайн и анимацию. Он поддерживает темный режим и запоминает параметры темы посетителя."><strong data-ja="説明:" data-en="Description:" data-ru="Описание:">説明:</strong> <span data-ja="このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="This website itself. We incorporated the latest web design and animations. It supports dark mode and remembers visitor theme settings." data-ru="Сам этот веб-сайт. Мы использовали новейший веб-дизайн и анимацию. Он поддерживает темный режим и запоминает параметры темы посетителя.">このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</span></p>
+<p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations. Dark mode compatible and remembers visitor theme settings." data-ru="Описание: Этот веб-сайт. Мы включили новейший веб-дизайн и анимацию. Совместимость с темным режимом и запоминание параметров темы для посетителей.">説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</p>
 <p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
 <ul>
 <li data-ja="レスポンシブデザイン" data-en="Responsive Design" data-ru="Адаптивный дизайн">レスポンシブデザイン</li>
@@ -681,7 +750,7 @@ footer a:hover {
 <div class="modal-content">
 <span class="close-modal" onclick="closeModal('project2')" aria-label="Close modal">&times;</span>
 <h2 id="project2Title" data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h2>
-<p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。" data-en="Description: Image recognition model using TensorFlow. It determines the presence of cats in uploaded images. We continuously improve it aiming for 99% accuracy." data-ru="Описание: Модель распознавания изображений с использованием TensorFlow. Он определяет наличие кошек в загруженных изображениях. Мы постоянно улучшаем его, стремясь к точности 99%."><strong data-ja="説明:" data-en="Description:" data-ru="Описание:">説明:</strong> <span data-ja="TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。" data-en="Image recognition model using TensorFlow. It determines the presence of cats in uploaded images. We continuously improve it aiming for 99% accuracy." data-ru="Модель распознавания изображений с использованием TensorFlow. Он определяет наличие кошек в загруженных изображениях. Мы постоянно улучшаем его, стремясь к точности 99%.">TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。</span></p>
+<p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。" data-en="Description: Image recognition model using TensorFlow. Determines whether cats are present in uploaded images. Constantly improving to achieve 99% accuracy." data-ru="Описание: Модель распознавания изображений с использованием TensorFlow. Определяет наличие кошек в загруженных изображениях. Постоянно совершенствуется для достижения точности 99%.">説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。</p>
 <p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
 <ul>
 <li data-ja="リアルタイム画像認識" data-en="Real-time Image Recognition" data-ru="Распознавание изображений в реальном времени">リアルタイム画像認識</li>
@@ -695,7 +764,7 @@ footer a:hover {
 <div class="modal-content">
 <span class="close-modal" onclick="closeModal('project3')" aria-label="Close modal">&times;</span>
 <h2 id="project3Title" data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h2>
-<p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。" data-en="Description: A casual game made with Unity. Despite being created with momentum, it's surprisingly addictive. Friends give it great reviews." data-ru="Описание: Казуальная игра, созданная с помощью Unity. Несмотря на то, что она была создана с размахом, она удивител��но захватывает. Друзья дают ему отличные отзывы."><strong data-ja="説明:" data-en="Description:" data-ru="Описание:">説明:</strong> <span data-ja="Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。" data-en="A casual game made with Unity. Despite being created with momentum, it's surprisingly addictive. Friends give it great reviews." data-ru="Казуальная игра, созданная с помощью Unity. Несмотря на то, что она была создана с размахом, она удивительно захватывает. Друзья дают ему отличные отзывы.">Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。</span></p>
+<p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があり���す。友人から好評です。" data-en="Description: A casual game developed in Unity. Despite being made with momentum, it's surprisingly addictive. It's well-received by friends." data-ru="Описание: Казуальная игра, разработанная в Unity. Несмотря на то, что это было сделано с инициативой, это неожиданно вызывает привыкание. Пользуется хорошей репутацией у друзей.">説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。</p>
 <p><strong data-ja="ゲームシステム:" data-en="Game System:" data-ru="Игровая система:">ゲームシステム:</strong></p>
 <ul>
 <li data-ja="ターン制バトル" data-en="Turn-based Battle" data-ru="Пошаговые боевые действия">ターン制バトル</li>
@@ -763,15 +832,15 @@ footer a:hover {
 
 <h3 data-ja="Nekosan2sd" data-en="Nekosan2sd" data-ru="Nekosan2sd">Nekosan2sd</h3>
 
-<p data-ja="このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。何か面白そうなアイデアがあれば、それを実装してしまう人。" data-en="The person who created this site. Recently learned GitHub Pages and created a company site with momentum. If there's an interesting idea, they implement it immediately." data-ru="Человек, создавший этот сайт. Недавно узнал о GitHub Pages и создал корпоративный сайт с размахом. Если есть интересная идея, они сразу же ее реализуют.">このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。何か面白そうなアイデアがあれば、それを実装してしまう人。</p>
+<p data-ja="このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。何か面白そうなアイデアがあれば、それを実装します。" data-en="The person who created this site. Recently learned about GitHub Pages and created this company site with momentum. If there's an interesting idea, I implement it." data-ru="Человек, создавший этот сайт. Недавно узнал о GitHub Pages и создал этот сайт компании с инициативой. Если есть интересная идея, я это реализую.">このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。</p>
 
 <h4 data-ja="好きなもの" data-en="Interests" data-ru="Интересы">好きなもの</h4>
 <ul>
-  <li data-ja="🔧 プログラミング - あらゆる言語で何か作りたい" data-en="🔧 Programming - Want to create something in every language" data-ru="🔧 Программирование - хочу создавать что-то на каждом языке">🔧 プログラミング - あらゆる言語で何か作りたい</li>
+  <li data-ja="🔧 プログラミング - あらゆる言語で何か作りたい" data-en="🔧 Programming - Want to create something in every language" data-ru="🔧 Программирование - хочу создать что-нибудь на каждом языке">🔧 プログラミング - あらゆる言語で何か作りたい</li>
   <li data-ja="🎮 ゲーム - プレイも制作も大好き" data-en="🎮 Games - Love both playing and making games" data-ru="🎮 Игры - люблю и играть, и делать игры">🎮 ゲーム - プレイも制作も大好き</li>
   <li data-ja="🐱 猫 - 猫は至高の存在" data-en="🐱 Cats - Cats are supreme beings" data-ru="🐱 Кошки - кошки - верховные существа">🐱 猫 - 猫は至高の存在</li>
-  <li data-ja="📊 データ分析 - 数字から物語を見つける" data-en="📊 Data Analysis - Find stories in numbers" data-ru="📊 Анализ данных - находить истории в цифрах">📊 データ分析 - 数字から物語を見つける</li>
-  <li data-ja="💡 新しい技術 - トレンドは常にチェック" data-en="💡 New Technologies - Always check trends" data-ru="💡 Новые технологии - всегда проверяют тренды">💡 新しい技術 - トレンドは常にチェック</li>
+  <li data-ja="📊 データ分析 - 数字から物語を見つける" data-en="📊 Data Analysis - Find stories in numbers" data-ru="📊 Анализ данных - находить истории в числах">📊 データ分析 - 数字から物語を見つける</li>
+  <li data-ja="💡 新しい技術 - トレンドは常にチェック" data-en="💡 New Technologies - Always check trends" data-ru="💡 Новые технологии - всегда проверяю тренды">💡 新しい技術 - トレンドは��にチェック</li>
 </ul>
 
 <h4 data-ja="連絡先" data-en="Contact" data-ru="Контакты">連絡先</h4>
@@ -786,7 +855,7 @@ footer a:hover {
 <ul class="timeline">
   <li>
     <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
-    <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English & Russian)! You can now switch languages anytime." data-ru="Внедрена поддержка нескольких языков (английский и русский)! Вы можете переключать языки в любое время.">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
+    <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English, Russian)! Now you can switch languages anytime." data-ru="Реализована многоязычная п��ддержка (английский, русский)! Теперь вы можете переключаться между языками в любое время.">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
   </li>
   <li>
     <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
@@ -805,7 +874,7 @@ footer a:hover {
 
 <div class="card" id="contact">
 <h2 data-ja="お問い合わせ" data-en="Contact Us" data-ru="Свяжитесь с нами">お問い合わせ</h2>
-<p data-ja="ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions, requests, or inquiries using the form below." data-ru="Не стесняйтесь обращаться к нам с любыми вопросами, запросами или запросами, используя форму ниже.">ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。</p>
+<p data-ja="ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions, requests, or inquiries." data-ru="Не стесняйтесь связаться с нами по любым вопросам, запросам или запросам предложений.">ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。</p>
 
 <p style="margin-top: 20px; font-size: 14px;">
 📧 <strong data-ja="メール:" data-en="Email:" data-ru="Электронная почта:">メール:</strong> info@tkd.example<br>
@@ -817,7 +886,8 @@ footer a:hover {
 </main>
 
 <footer role="contentinfo">
-<span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания - компания из размаха и мечты ✨ | ">© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | </span><a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="ソースコード" data-en="Source Code" data-ru="Исходный код">ソースコード</a>
+<span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания - компания, сделанная из инициативы и мечты ✨ | "></span>
+<a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a>
 </footer>
 
 <script>
