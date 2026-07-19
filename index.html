@@ -1,3 +1,935 @@
+<!DOCTYPE html>
+<html lang="ja" data-language="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TKD株式会社の公式ホームページ。Web制作、プログラミング、ゲーム開発などを行っています。">
+<meta name="theme-color" content="#003366">
+<meta name="author" content="Nekosan2sd">
+
+<!-- OG Tags for Social Media -->
+<meta property="og:title" content="TKD株式会社 - 勢いと夢でできている企業">
+<meta property="og:description" content="Web制作、プログラミング、ゲーム開発、猫の布教活動などを行っている架空企業">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nekosan2sd.github.io">
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TKD株式会社",
+  "description": "Web制作、プログラミング、ゲーム開発を行う企業",
+  "url": "https://nekosan2sd.github.io",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://github.com/Nekosan2sd"
+  }
+}
+</script>
+
+<title data-ja="TKD株式会社 | Web制作・プログラミング・ゲーム開発" data-en="TKD Co., Ltd. | Web Development, Programming, Game Development" data-ru="ТКД Co., Ltd. | Веб-разработка, программирование, разработка игр">TKD株式会社 | Web制作・プログラミング・ゲーム開発</title>
+
+<style>
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+    --primary-color: #003366;
+    --bg-color: #f4f6f8;
+    --text-color: #222;
+    --card-bg: white;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --accent-color: #ff6b6b;
+}
+
+html.dark-mode {
+    --primary-color: #00a8ff;
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-bg: #2d2d2d;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Language-specific font sizes */
+html[data-language="ja"] {
+    --base-font-size: 16px;
+    --h1-size: 40px;
+    --h2-size: 28px;
+    --h3-size: 20px;
+    --h4-size: 18px;
+    --p-size: 16px;
+    --small-size: 14px;
+}
+
+html[data-language="en"] {
+    --base-font-size: 15px;
+    --h1-size: 38px;
+    --h2-size: 26px;
+    --h3-size: 19px;
+    --h4-size: 17px;
+    --p-size: 15px;
+    --small-size: 13px;
+}
+
+html[data-language="ru"] {
+    --base-font-size: 14px;
+    --h1-size: 36px;
+    --h2-size: 24px;
+    --h3-size: 18px;
+    --h4-size: 16px;
+    --p-size: 14px;
+    --small-size: 12px;
+}
+
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:var(--bg-color);
+    color:var(--text-color);
+    scroll-behavior: smooth;
+    font-size: var(--base-font-size);
+}
+
+header{
+    background:var(--primary-color);
+    color:white;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+header h2{
+    margin:0;
+    font-size: 24px;
+}
+
+.header-controls {
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.theme-toggle, .lang-toggle {
+    background:rgba(255,255,255,0.2);
+    border:none;
+    color:white;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+    transition:background 0.3s;
+    font-weight: bold;
+}
+
+.theme-toggle:hover, .lang-toggle:hover {
+    background:rgba(255,255,255,0.3);
+}
+
+.lang-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    min-width: 120px;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    margin-top: 5px;
+}
+
+.lang-dropdown.active {
+    display: block;
+}
+
+.lang-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.lang-dropdown button:hover {
+    background: rgba(0, 51, 102, 0.1);
+}
+
+.lang-dropdown button.active {
+    background: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:all 0.3s;
+}
+
+nav a:hover{
+    text-decoration:underline;
+    transform:scale(1.05);
+}
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+    background:var(--card-bg);
+    animation:slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity:0;
+        transform:translateY(-30px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hero img{
+    max-width:300px;
+    width:100%;
+    height:auto;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+    animation:zoomIn 0.8s ease-out;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to {
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.hero h1{
+    font-size: var(--h1-size);
+    margin:10px 0;
+    animation:fadeIn 1s ease-out 0.2s both;
+}
+
+.hero p{
+    font-size: var(--p-size);
+    animation:fadeIn 1s ease-out 0.4s both;
+}
+
+@keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+main {
+    flex: 1;
+}
+
+section{
+    padding:40px 20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.card{
+    background:var(--card-bg);
+    padding:25px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    animation:slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card h2{
+    margin-top:0;
+    font-size: var(--h2-size);
+    color:var(--primary-color);
+    border-bottom:2px solid var(--primary-color);
+    padding-bottom:10px;
+}
+
+.card h3{
+    font-size: var(--h3-size);
+    color:var(--primary-color);
+    margin-top:20px;
+}
+
+.card h4{
+    font-size: var(--h4-size);
+}
+
+.card p{
+    font-size: var(--p-size);
+}
+
+.timeline{
+    list-style:none;
+    padding:0;
+}
+
+.timeline li{
+    padding:15px 0 15px 40px;
+    position:relative;
+    border-left:2px solid var(--primary-color);
+    margin-left:10px;
+    font-size: var(--p-size);
+}
+
+.timeline li:before{
+    content:'';
+    position:absolute;
+    left:-8px;
+    top:20px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--primary-color);
+    box-shadow:0 0 0 3px var(--bg-color);
+}
+
+.timeline li strong{
+    color:var(--primary-color);
+    display:block;
+    margin-bottom:5px;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.portfolio-card {
+    background:var(--card-bg);
+    border:2px solid var(--primary-color);
+    border-radius:10px;
+    padding:20px;
+    cursor:pointer;
+    transition:all 0.3s;
+    box-shadow:var(--shadow);
+}
+
+.portfolio-card:hover {
+    transform:translateY(-10px);
+    box-shadow:0 8px 16px rgba(0,0,0,0.2);
+}
+
+.portfolio-card h4 {
+    margin-top:0;
+    font-size: var(--h4-size);
+    color:var(--primary-color);
+}
+
+.portfolio-card p {
+    font-size: var(--p-size);
+}
+
+.tech-tags {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+.tech-tag {
+    background:var(--primary-color);
+    color:white;
+    padding:4px 10px;
+    border-radius:15px;
+    font-size: var(--small-size);
+    animation:popIn 0.4s ease-out;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tech-tag:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+@keyframes popIn {
+    from {
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to {
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.filter-btn {
+    background: var(--card-bg);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: var(--p-size);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Skills Section */
+.skills-container {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.skill-category {
+    background:var(--card-bg);
+    padding:15px;
+    border-radius:8px;
+    border-left:4px solid var(--primary-color);
+}
+
+.skill-category h4 {
+    margin-top:0;
+    font-size: var(--h4-size);
+    color:var(--primary-color);
+}
+
+.skill-list {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.skill-list li {
+    padding:5px 0;
+    padding-left:20px;
+    position:relative;
+    font-size: var(--p-size);
+}
+
+.skill-list li:before {
+    content:'✓';
+    position:absolute;
+    left:0;
+    color:var(--primary-color);
+    font-weight:bold;
+}
+
+.progress-bar {
+    width:100%;
+    height:6px;
+    background:rgba(0,0,0,0.1);
+    border-radius:3px;
+    margin-top:5px;
+    overflow:hidden;
+}
+
+.progress-fill {
+    height:100%;
+    background:var(--primary-color);
+    border-radius:3px;
+    animation:fillProgress 0.8s ease-out;
+}
+
+@keyframes fillProgress {
+    from { width:0; }
+}
+
+/* Modal */
+.modal {
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    animation:fadeIn 0.3s;
+}
+
+.modal-content {
+    background:var(--card-bg);
+    margin:10% auto;
+    padding:30px;
+    border-radius:10px;
+    width:90%;
+    max-width:600px;
+    animation:slideUp 0.4s;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    font-size: var(--h2-size);
+}
+
+.modal-content h3 {
+    font-size: var(--h3-size);
+}
+
+.modal-content p {
+    font-size: var(--p-size);
+}
+
+.modal-content li {
+    font-size: var(--p-size);
+}
+
+.close-modal {
+    color:var(--text-color);
+    float:right;
+    font-size:28px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:color 0.3s;
+}
+
+.close-modal:hover {
+    color:var(--primary-color);
+}
+
+footer{
+    background:var(--primary-color);
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+    font-size: var(--p-size);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width:768px){
+    header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .header-controls {
+        width:100%;
+        justify-content:space-between;
+    }
+
+    nav {
+        width:100%;
+        flex-direction:column;
+    }
+
+    nav a {
+        font-size: var(--small-size);
+    }
+
+    .hero{
+        padding:50px 20px;
+    }
+
+    .hero h1{
+        font-size: calc(var(--h1-size) * 0.7);
+    }
+
+    .hero p{
+        font-size: calc(var(--p-size) * 0.95);
+    }
+
+    section{
+        padding:30px 15px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .portfolio-grid {
+        grid-template-columns:1fr;
+    }
+
+    .skills-container {
+        grid-template-columns:1fr;
+    }
+
+    .modal-content {
+        width:95%;
+        margin:20% auto;
+        padding:20px;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+</style>
+</head>
+
+<body>
+
+<header role="banner">
+<h2 data-ja="TKD株式会社" data-en="TKD Co., Ltd." data-ru="ТКД Компания">TKD株式会社</h2>
+<nav role="navigation">
+  <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании">会社概要</a>
+  <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</a>
+  <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</a>
+  <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки">スキル</a>
+  <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик">開発者</a>
+  <a href="#updates" data-ja="更新履歴" data-en="Updates" data-ru="Обновления">更新履歴</a>
+  <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты">お問い合わせ</a>
+</nav>
+<div class="header-controls">
+  <button class="theme-toggle" onclick="toggleTheme()" title="テーマ切り替え" aria-label="Toggle dark mode">🌙</button>
+  <div class="lang-selector">
+    <button class="lang-toggle" onclick="toggleLangDropdown()" title="言語切り替え">🌐 日本語</button>
+    <div class="lang-dropdown" id="langDropdown">
+      <button onclick="setLanguage('ja')" class="lang-option active">🇯🇵 日本語</button>
+      <button onclick="setLanguage('en')" class="lang-option">🇺🇸 English</button>
+      <button onclick="setLanguage('ru')" class="lang-option">🇷🇺 Русский</button>
+    </div>
+  </div>
+</div>
+</header>
+
+<div class="hero">
+<img src="./IMG_2168.jpeg" alt="TKD" loading="lazy">
+<h1 data-ja="芸術は爆破飲料！" data-en="Art is an Explosion Drink!" data-ru="Искусство — это взрывн��й напиток!">芸術は爆破飲料！</h1>
+<p data-ja="TKD株式会社の公式ホームページへようこそ。" data-en="Welcome to TKD Co., Ltd. official website." data-ru="Добро пожаловать на официальный сайт ТКД Компании.">TKD株式会社の公式ホームページへようこそ。</p>
+</div>
+
+<main>
+<section>
+
+<div class="card" id="about">
+<h2 data-ja="会社概要" data-en="About Us" data-ru="О нас">会社概要</h2>
+<p data-ja="TKD株式会社は、勢いだけで設立された伝説の架空企業です。事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。" data-en="TKD Co., Ltd. is a legendary fictional company founded purely on momentum. Our business includes web development, programming, game research, and cat evangelism." data-ru="ТКД Компания — это легендарная вымышленная компания, основанная исключительно по инициативе. Наша деятельность включает веб-разработку, программирование, исследование игр и евангелизм кошек.">TKD株式会社は、勢いだけで設立された伝説の架空企業です。</p>
+</div>
+
+<div class="card" id="service">
+<h2 data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</h2>
+<p data-ja="Web制作、システム開発、クラウド導入支援を行っています。現在は主に、面白そうなものを勢いで作る活動に力を入れています。" data-en="We provide web development, system development, and cloud implementation support. Currently, we focus on creating interesting things with momentum." data-ru="Мы предоставляем веб-разработку, разработку систем и поддержку внедрения облака. В настоящее время мы сосредоточены на создании интересных вещей с инициативой.">Web制作、システム開発、クラウド導入支援を行っています。</p>
+<h3 data-ja="主な事業" data-en="Main Services" data-ru="Основные услуги">主な事業</h3>
+<ul>
+  <li data-ja="🌐 Web制作・フロントエンド開発" data-en="���� Web Development & Frontend Development" data-ru="🌐 Веб-разработка и фронтенд-разработка">🌐 Web制作・フロントエンド開発</li>
+  <li data-ja="⚙️ バックエンド・システム開発" data-en="⚙️ Backend & System Development" data-ru="⚙️ Разработка бэкенда и систем">⚙️ バックエンド・システム開発</li>
+  <li data-ja="🎮 ゲーム企画・開発" data-en="🎮 Game Planning & Development" data-ru="🎮 Планирование и разработка игр">🎮 ゲーム企画・開発</li>
+  <li data-ja="☁️ クラウド導入支援" data-en="☁️ Cloud Implementation Support" data-ru="☁️ Поддержка внедрения облака">☁️ クラウド導入支援</li>
+  <li data-ja="🐱 猫の布教活動（重要）" data-en="🐱 Cat Evangelism (Important)" data-ru="🐱 Проповедование котов (Важно)">🐱 猫の布教活動（重要）</li>
+</ul>
+</div>
+
+<div class="card" id="portfolio">
+<h2 data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</h2>
+<p data-ja="過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。" data-en="Here are our past projects. Click for details." data-ru="Вот наши прошлые проекты. Нажмите для деталей.">過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。</p>
+
+<div class="filter-controls">
+  <button class="filter-btn active" onclick="filterProjects('all')" data-ja="すべて" data-en="All" data-ru="Все">すべて</button>
+  <button class="filter-btn" onclick="filterProjects('web')" data-ja="Web" data-en="Web" data-ru="Веб">Web</button>
+  <button class="filter-btn" onclick="filterProjects('ai')" data-ja="AI" data-en="AI" data-ru="ИИ">AI</button>
+  <button class="filter-btn" onclick="filterProjects('game')" data-ja="ゲーム" data-en="Game" data-ru="Игра">ゲーム</button>
+</div>
+
+<div class="portfolio-grid" id="portfolioGrid">
+  <div class="portfolio-card" onclick="openModal('project1')" data-category="web">
+    <h4 data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h4>
+    <p data-ja="このサイト自体！最新のWebデザインとアニメーション。" data-en="This website itself! Latest web design and animations." data-ru="Сам этот веб-сайт! Последний веб-дизайн и анимация.">このサイト自体！最新のWebデザインとアニメーション。</p>
+    <div class="tech-tags">
+      <span class="tech-tag">HTML</span>
+      <span class="tech-tag">CSS</span>
+      <span class="tech-tag">JavaScript</span>
+    </div>
+  </div>
+
+  <div class="portfolio-card" onclick="openModal('project2')" data-category="ai">
+    <h4 data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h4>
+    <p data-ja="画像から猫を自動検出するAIシステム。" data-en="AI system that automatically detects cats from images." data-ru="Система ИИ, которая автоматически обнаруживает кошек с изображений.">画像から猫を自動検出するAIシステム。</p>
+    <div class="tech-tags">
+      <span class="tech-tag">Python</span>
+      <span class="tech-tag">TensorFlow</span>
+      <span class="tech-tag">OpenCV</span>
+    </div>
+  </div>
+
+  <div class="portfolio-card" onclick="openModal('project3')" data-category="game">
+    <h4 data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h4>
+    <p data-ja="勢いで作ったカジュアルゲーム。意外と面白い。" data-en="A casual game made with momentum. Surprisingly fun." data-ru="Казуальная игра, созданная с инициативой. Неожиданно весело.">勢いで作ったカジュアルゲーム。意外と面白い。</p>
+    <div class="tech-tags">
+      <span class="tech-tag">Unity</span>
+      <span class="tech-tag">C#</span>
+      <span class="tech-tag">2D</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Modals for Projects -->
+<div id="project1Modal" class="modal" role="dialog" aria-labelledby="project1Title">
+<div class="modal-content">
+<span class="close-modal" onclick="closeModal('project1')" aria-label="Close modal">&times;</span>
+<h2 id="project1Title" data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h2>
+<p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations. Dark mode compatible and remembers visitor theme settings." data-ru="Описание: Этот веб-сайт. Мы включили новейший веб-дизайн и анимацию. Совместимость с темным режимом и запоминание параметров темы для посетителей.">説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</p>
+<p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
+<ul>
+<li data-ja="レスポンシブデザイン" data-en="Responsive Design" data-ru="Адаптивный дизайн">レスポンシブデザイン</li>
+<li data-ja="ダークモード切り替え" data-en="Dark Mode Toggle" data-ru="Переключение темного режима">ダークモード切り替え</li>
+<li data-ja="スムーズなアニメーション" data-en="Smooth Animations" data-ru="Плавная анимация">スムーズなアニメーション</li>
+<li data-ja="多言語対応" data-en="Multilingual Support" data-ru="Поддержка нескольких языков">多言語対応</li>
+</ul>
+</div>
+</div>
+
+<div id="project2Modal" class="modal" role="dialog" aria-labelledby="project2Title">
+<div class="modal-content">
+<span class="close-modal" onclick="closeModal('project2')" aria-label="Close modal">&times;</span>
+<h2 id="project2Title" data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h2>
+<p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。" data-en="Description: Image recognition model using TensorFlow. Determines whether cats are present in uploaded images. Constantly improving to achieve 99% accuracy." data-ru="Описание: Модель распознавания изображений с использованием TensorFlow. Определяет наличие кошек в загруженных изображениях. Постоянно совершенствуется для достижения точности 99%.">説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。</p>
+<p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
+<ul>
+<li data-ja="リアルタイム画像認識" data-en="Real-time Image Recognition" data-ru="Распознавание изображений в реальном времени">リアルタイム画像認識</li>
+<li data-ja="複数猫の同時検出" data-en="Multiple Cat Detection" data-ru="Обнаружение нескольких кошек">複数猫の同時検出</li>
+<li data-ja="信頼度スコア表示" data-en="Confidence Score Display" data-ru="Отображение показателя уверенности">信頼度スコア表示</li>
+</ul>
+</div>
+</div>
+
+<div id="project3Modal" class="modal" role="dialog" aria-labelledby="project3Title">
+<div class="modal-content">
+<span class="close-modal" onclick="closeModal('project3')" aria-label="Close modal">&times;</span>
+<h2 id="project3Title" data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h2>
+<p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があり���す。友人から好評です。" data-en="Description: A casual game developed in Unity. Despite being made with momentum, it's surprisingly addictive. It's well-received by friends." data-ru="Описание: Казуальная игра, разработанная в Unity. Несмотря на то, что это было сделано с инициативой, это неожиданно вызывает привыкание. Пользуется хорошей репутацией у друзей.">説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。</p>
+<p><strong data-ja="ゲームシステム:" data-en="Game System:" data-ru="Игровая система:">ゲームシステム:</strong></p>
+<ul>
+<li data-ja="ターン制バトル" data-en="Turn-based Battle" data-ru="Пошаговые боевые действия">ターン制バトル</li>
+<li data-ja="キャラクター育成要素" data-en="Character Growth Elements" data-ru="Элементы роста персонажей">キャラクター育成要素</li>
+<li data-ja="リーダーボード機能" data-en="Leaderboard Feature" data-ru="Функция таблицы лидеров">リーダーボード機能</li>
+</ul>
+</div>
+</div>
+
+<section>
+
+<div class="card" id="skills">
+<h2 data-ja="スキル・技術スタック" data-en="Skills & Tech Stack" data-ru="Навыки и технический стек">スキル・技術スタック</h2>
+<p data-ja="Nekosan2sdが使用できる言語・技術一覧です。" data-en="A list of languages and technologies that Nekosan2sd can use." data-ru="Список языков и технологий, которые может использовать Nekosan2sd.">Nekosan2sdが使用できる言語・技術一覧です。</p>
+
+<div class="skills-container">
+  <div class="skill-category">
+    <h4 data-ja="🖥️ 言語" data-en="🖥️ Languages" data-ru="🖥️ Языки">🖥️ 言語</h4>
+    <ul class="skill-list">
+      <li data-ja="Python" data-en="Python" data-ru="Python">Python</li>
+      <li data-ja="JavaScript" data-en="JavaScript" data-ru="JavaScript">JavaScript</li>
+      <li data-ja="C#" data-en="C#" data-ru="C#">C#</li>
+      <li data-ja="HTML/CSS" data-en="HTML/CSS" data-ru="HTML/CSS">HTML/CSS</li>
+      <li data-ja="SQL" data-en="SQL" data-ru="SQL">SQL</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h4 data-ja="🔧 フレームワーク・ライブラリ" data-en="🔧 Frameworks & Libraries" data-ru="🔧 Фреймворки и библиотеки">🔧 フレームワーク・ライブラリ</h4>
+    <ul class="skill-list">
+      <li data-ja="React" data-en="React" data-ru="React">React</li>
+      <li data-ja="Node.js" data-en="Node.js" data-ru="Node.js">Node.js</li>
+      <li data-ja="TensorFlow" data-en="TensorFlow" data-ru="TensorFlow">TensorFlow</li>
+      <li data-ja="Django" data-en="Django" data-ru="Django">Django</li>
+      <li data-ja="Unity" data-en="Unity" data-ru="Unity">Unity</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h4 data-ja="☁️ インフラ・ツール" data-en="☁️ Infrastructure & Tools" data-ru="☁️ Инфраструктура и инструменты">☁️ インフラ・ツール</h4>
+    <ul class="skill-list">
+      <li data-ja="Git/GitHub" data-en="Git/GitHub" data-ru="Git/GitHub">Git/GitHub</li>
+      <li data-ja="Docker" data-en="Docker" data-ru="Docker">Docker</li>
+      <li data-ja="AWS" data-en="AWS" data-ru="AWS">AWS</li>
+      <li data-ja="PostgreSQL" data-en="PostgreSQL" data-ru="PostgreSQL">PostgreSQL</li>
+      <li data-ja="Linux" data-en="Linux" data-ru="Linux">Linux</li>
+    </ul>
+  </div>
+
+  <div class="skill-category">
+    <h4 data-ja="🎨 デザイン・その他" data-en="🎨 Design & Other" data-ru="🎨 Дизайн и прочее">🎨 デザイン・その他</h4>
+    <ul class="skill-list">
+      <li data-ja="UI/UXデザイン" data-en="UI/UX Design" data-ru="Дизайн пользовательского интерфейса">UI/UXデザイン</li>
+      <li data-ja="Figma" data-en="Figma" data-ru="Figma">Figma</li>
+      <li data-ja="データ分析" data-en="Data Analysis" data-ru="Анализ данных">データ分析</li>
+      <li data-ja="API設計" data-en="API Design" data-ru="Дизайн API">API設計</li>
+      <li data-ja="🐱 猫知識" data-en="🐱 Cat Knowledge" data-ru="🐱 Знание о кошках">🐱 猫知識</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="card" id="developer">
+<h2 data-ja="開発者プロフィール" data-en="Developer Profile" data-ru="Профиль разработчика">開発者プロフィール</h2>
+
+<h3 data-ja="Nekosan2sd" data-en="Nekosan2sd" data-ru="Nekosan2sd">Nekosan2sd</h3>
+
+<p data-ja="このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。何か面白そうなアイデアがあれば、それを実装します。" data-en="The person who created this site. Recently learned about GitHub Pages and created this company site with momentum. If there's an interesting idea, I implement it." data-ru="Человек, создавший этот сайт. Недавно узнал о GitHub Pages и создал этот сайт компании с инициативой. Если есть интересная идея, я это реализую.">このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。</p>
+
+<h4 data-ja="好きなもの" data-en="Interests" data-ru="Интересы">好きなもの</h4>
+<ul>
+  <li data-ja="🔧 プログラミング - あらゆる言語で何か作りたい" data-en="🔧 Programming - Want to create something in every language" data-ru="🔧 Программирование - хочу создать что-нибудь на каждом языке">🔧 プログラミング - あらゆる言語で何か作りたい</li>
+  <li data-ja="🎮 ゲーム - プレイも制作も大好き" data-en="🎮 Games - Love both playing and making games" data-ru="🎮 Игры - люблю и играть, и делать игры">🎮 ゲーム - プレイも制作も大好き</li>
+  <li data-ja="🐱 猫 - 猫は至高の存在" data-en="🐱 Cats - Cats are supreme beings" data-ru="🐱 Кошки - кошки - верховные существа">🐱 猫 - 猫は至高の存在</li>
+  <li data-ja="📊 データ分析 - 数字から物語を見つける" data-en="📊 Data Analysis - Find stories in numbers" data-ru="📊 Анализ данных - находить истории в числах">📊 データ分析 - 数字から物語を見つける</li>
+  <li data-ja="💡 新しい技術 - トレンドは常にチェック" data-en="💡 New Technologies - Always check trends" data-ru="💡 Новые технологии - всегда проверяю тренды">💡 新しい技術 - トレンドは��にチェック</li>
+</ul>
+
+<h4 data-ja="連絡先" data-en="Contact" data-ru="Контакты">連絡先</h4>
+<ul>
+  <li>GitHub: <a href="https://github.com/Nekosan2sd" target="_blank" rel="noopener">@Nekosan2sd</a></li>
+  <li data-ja="メール: info@tkd.example" data-en="Email: info@tkd.example" data-ru="Электронная почта: info@tkd.example">メール: info@tkd.example</li>
+</ul>
+</div>
+
+<div class="card" id="updates">
+<h2 data-ja="更新履歴" data-en="Updates" data-ru="История обновлений">更新履歴</h2>
+<ul class="timeline">
+  <li>
+    <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
+    <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English, Russian)! Now you can switch languages anytime." data-ru="Реализована многоязычная п��ддержка (английский, русский)! Теперь вы можете переключаться между языками в любое время.">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
+  </li>
+  <li>
+    <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
+    <span data-ja="ブログモーダルを実装！3つの記事が読める機能を追加しました。" data-en="Implemented blog modals! Added a feature to read 3 articles." data-ru="Модальные окна блога реализованы! Добавлена функция для чтения 3 статей.">ブログモーダルを実装！3つの記事が読める機能を追加しました。</span>
+  </li>
+  <li>
+    <strong data-ja="2026年7月16日" data-en="July 16, 2026" data-ru="16 июля 2026 г.">2026年7月16日</strong>
+    <span data-ja="ホームページをリニューアル。更新履歴セクションを追加しました。" data-en="Renewed homepage. Added updates section." data-ru="Обновлена домашняя страница. Добавлен раздел обновлений.">ホームページをリニューアル。更新履歴セクションを追加しました。</span>
+  </li>
+  <li>
+    <strong data-ja="2026年7月15日" data-en="July 15, 2026" data-ru="15 июля 2026 г.">2026年7月15日</strong>
+    <span data-ja="TKD株式会社の公式ホームページがオープンしました。" data-en="TKD Co., Ltd.'s official website opened." data-ru="Официальный сайт ТКД Компании открыт.">TKD株式会社の公式ホームページがオープンしました。</span>
+  </li>
+</ul>
+</div>
+
+<div class="card" id="contact">
+<h2 data-ja="お問い合わせ" data-en="Contact Us" data-ru="Свяжитесь с нами">お問い合わせ</h2>
+<p data-ja="ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions, requests, or inquiries." data-ru="Не стесняйтесь связаться с нами по любым вопросам, запросам или запросам предложений.">ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。</p>
+
+<p style="margin-top: 20px; font-size: 14px;">
+📧 <strong data-ja="メール:" data-en="Email:" data-ru="Электронная почта:">メール:</strong> info@tkd.example<br>
+💻 <strong data-ja="GitHub:" data-en="GitHub:" data-ru="GitHub:">GitHub:</strong> <a href="https://github.com/Nekosan2sd" target="_blank" rel="noopener">github.com/Nekosan2sd</a><br>
+</p>
+</div>
+
+</section>
+</main>
+
+<footer role="contentinfo">
+<span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания - компания, сделанная из инициативы и мечты ✨ | "></span>
+<a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a>
+</footer>
+
+<script>
+// 言語データ（辞書）
+const translations = {
+  'ja': {
+    'company-name': 'TKD株式会社',
+    'tagline': '芸術は爆破飲料！',
+    'welcome': 'TKD株式会社の公式ホームページへようこそ。'
+  },
+  'en': {
+    'company-name': 'TKD Co., Ltd.',
+    'tagline': 'Art is an Explosion Drink!',
+    'welcome': 'Welcome to TKD Co., Ltd. official website.'
+  },
+  'ru': {
+    'company-name': 'ТКД Компания',
+    'tagline': 'Искусство — это взрывной напиток!',
+    'welcome': 'Добро пожаловать на официальный сайт ТКД Компании.'
+  }
+};
+
+let currentLanguage = localStorage.getItem('language') || 'ja';
+
+// ページロード時に言語を復元
+window.addEventListener('DOMContentLoaded', function() {
+  setLanguage(currentLanguage);
+  
+  // テーマも復元
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const html = document.documentElement;
+  const button = document.querySelector('.theme-toggle');
+  
+  if (savedTheme === 'dark') {
+    html.classList.add('dark-mode');
+    button.textContent = '☀️';
+  } else {
+    html.classList.remove('dark-mode');
+    button.textContent = '🌙';
+  }
+});
+
 // 言語切り替え
 function setLanguage(lang) {
   currentLanguage = lang;
@@ -7,26 +939,12 @@ function setLanguage(lang) {
   // すべての要素を走査して翻訳
   const elements = document.querySelectorAll('[data-ja][data-en][data-ru]');
   elements.forEach(el => {
-    // 要素の最初の子ノード（通常はテキストノード）のみを置き換える
-    let translatedText = '';
     if (lang === 'ja' && el.dataset.ja) {
-      translatedText = el.dataset.ja;
+      el.textContent = el.dataset.ja;
     } else if (lang === 'en' && el.dataset.en) {
-      translatedText = el.dataset.en;
+      el.textContent = el.dataset.en;
     } else if (lang === 'ru' && el.dataset.ru) {
-      translatedText = el.dataset.ru;
-    }
-    
-    // 最初のテキストノードだけを置き換える
-    if (translatedText) {
-      // 既存の最初のテキストノードを置き換え
-      const firstChild = el.firstChild;
-      if (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
-        firstChild.textContent = translatedText;
-      } else {
-        // テキストノードがない場合は作成
-        el.insertBefore(document.createTextNode(translatedText), firstChild);
-      }
+      el.textContent = el.dataset.ru;
     }
   });
 
@@ -44,3 +962,99 @@ function setLanguage(lang) {
   // ドロップダウンを閉じる
   document.getElementById('langDropdown').classList.remove('active');
 }
+
+// 言語ドロップダウン切り替え
+function toggleLangDropdown() {
+  const dropdown = document.getElementById('langDropdown');
+  dropdown.classList.toggle('active');
+}
+
+// 外側クリックでドロップダウンを閉じる
+document.addEventListener('click', function(event) {
+  const selector = document.querySelector('.lang-selector');
+  if (!selector.contains(event.target)) {
+    document.getElementById('langDropdown').classList.remove('active');
+  }
+});
+
+// ダークモード切り替え
+function toggleTheme() {
+  const html = document.documentElement;
+  const button = document.querySelector('.theme-toggle');
+  
+  if (html.classList.contains('dark-mode')) {
+    html.classList.remove('dark-mode');
+    button.textContent = '🌙';
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.add('dark-mode');
+    button.textContent = '☀️';
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// モーダル機能
+function openModal(projectId) {
+  const modalId = projectId + 'Modal';
+  document.getElementById(modalId).style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(projectId) {
+  const modalId = projectId + 'Modal';
+  document.getElementById(modalId).style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// モーダル外クリックで閉じる
+window.onclick = function(event) {
+  if (event.target.classList.contains('modal')) {
+    event.target.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
+
+// ESCキーでモーダルを閉じる
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (modal.style.display === 'block') {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  }
+});
+
+// ポートフォリオフィルタリング
+function filterProjects(category) {
+  const cards = document.querySelectorAll('.portfolio-card');
+  const buttons = document.querySelectorAll('.filter-btn');
+  
+  buttons.forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  cards.forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// スムーズスクロール
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
