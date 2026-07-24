@@ -23,7 +23,7 @@
   "url": "https://nekosan2sd.github.io",
   "contactPoint": {
     "@type": "ContactPoint",
-    "url": "https://github.com/Nekosan2sd"
+    "email": "r4cbook@gmail.com"
   }
 }
 </script>
@@ -310,6 +310,88 @@ section {
     line-height: 1.7;
 }
 
+/* Feature / Why Choose Us Grid */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.feature-box {
+    background: var(--bg-color);
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.feature-box h4 {
+    margin: 8px 0;
+    color: var(--primary-color);
+}
+
+/* Process Steps */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.step-card {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    border-top: 4px solid var(--primary-color);
+}
+
+.step-num {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.step-card h4 {
+    margin: 8px 0;
+}
+
+/* Testimonials / Reviews */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.review-card {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.review-stars {
+    color: #f1c40f;
+    margin-bottom: 8px;
+}
+
+.review-author {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: var(--small-size);
+    color: var(--primary-color);
+    text-align: right;
+}
+
 /* Vision / Philosophy Cards */
 .vision-grid {
     display: grid;
@@ -361,6 +443,50 @@ section {
 .stat-label {
     font-size: var(--small-size);
     font-weight: 500;
+}
+
+/* Cat API Gallery Box */
+.cat-gallery-box {
+    text-align: center;
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.cat-img-container {
+    width: 100%;
+    max-width: 400px;
+    height: 280px;
+    margin: 16px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--border-color);
+}
+
+.cat-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-secondary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: var(--p-size);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
 }
 
 /* Timeline */
@@ -758,7 +884,7 @@ footer a:hover {
         margin-top: 20px;
     }
 
-    .portfolio-grid, .skills-container, .vision-grid {
+    .portfolio-grid, .skills-container, .vision-grid, .feature-grid, .process-steps, .reviews-grid {
         grid-template-columns: 1fr;
     }
 
@@ -797,13 +923,16 @@ footer a:hover {
   <nav role="navigation">
     <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании">会社概要</a>
     <a href="#vision" data-ja="企業理念" data-en="Vision" data-ru="Видение">企業理念</a>
+    <a href="#why-us" data-ja="選ばれる理由" data-en="Why Us" data-ru="Почему мы">選ばれる理由</a>
     <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</a>
+    <a href="#process" data-ja="開発の流れ" data-en="Process" data-ru="Процесс">開発の流れ</a>
     <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</a>
     <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки">スキル</a>
     <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика">実績</a>
+    <a href="#reviews" data-ja="利用者の声" data-en="Reviews" data-ru="Отзывы">利用者の声</a>
+    <a href="#cat-gallery" data-ja="本日の猫" data-en="Cat Gallery" data-ru="Кошка дня">本日の猫</a>
     <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО">FAQ</a>
     <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик">開発者</a>
-    <a href="#updates" data-ja="更新履歴" data-en="Updates" data-ru="Обновления">更新履歴</a>
     <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты">お問い合わせ</a>
   </nav>
 </header>
@@ -841,6 +970,31 @@ footer a:hover {
       </div>
     </div>
 
+    <div class="card" id="why-us">
+      <h2 data-ja="🚀 TKDが選ばれる理由" data-en="🚀 Why Choose TKD" data-ru="🚀 Почему выбирают ТКД">🚀 TKDが選ばれる理由</h2>
+      <p data-ja="他社にはない、TKDならではの強みとこだわりをご紹介します。" data-en="Introducing the strengths and commitments unique to TKD." data-ru="Представляем преимущества и обязательства, уникальные для ТКД.">他社にはない、TKDならではの強みとこだわりをご紹介します。</p>
+
+      <div class="feature-grid">
+        <div class="feature-box">
+          <div class="feature-icon">⚡</div>
+          <h4 data-ja="圧倒的スピード感" data-en="Overwhelming Speed" data-ru="Невероятная скорость">圧倒的スピード感</h4>
+          <p data-ja="思い立ったら即実装！アイデアからプロトタイプ完成まで勢いを殺さず爆速で仕上げます。" data-en="Instant implementation when an idea hits! From concept to prototype at lightning speed." data-ru="Мгновенное воплощение идей!">思い立ったら即実装！アイデアからプロトタイプ完成まで勢いを殺さず爆速で仕上げます。</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">🎨</div>
+          <h4 data-ja="モダンなUX & UI" data-en="Modern UX & UI" data-ru="Современный UX и UI">モダンなUX & UI</h4>
+          <p data-ja="ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。" data-en="Dark mode, multi-language support, and comfortable user experiences." data-ru="Удобный интерфейс с темным режимом и языками.">ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">💡</div>
+          <h4 data-ja="遊び心とユーモア" data-en="Playfulness & Humor" data-ru="Игривость и юмор">遊び心とユーモア</h4>
+          <p data-ja="ただ作るだけでなく、使った人が思わず笑顔になるような隠し要素や仕掛けを大切にします。" data-en="Not just building, but adding hidden elements and mechanisms that make users smile." data-ru="Добавление скрытых элементов, вызывающих улыбку.">ただ作るだけでなく、使った人が思わず笑顔になるような隠し要素や仕掛けを大切にします。</p>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="service">
       <h2 data-ja="💼 事業内容" data-en="💼 Services" data-ru="💼 Услуги">💼 事業内容</h2>
       <p data-ja="Web制作、システム開発、クラウド導入支援を行っています。現在は主に、面白そうなものを勢いで作る活動に力を入れています。" data-en="We provide web development, system development, and cloud implementation support. Currently, we focus on creating interesting things with momentum." data-ru="Мы предоставляем веб-разработку, разработку систем и поддержку внедрения облака. В настоящее время мы сосредоточены на создании интересных вещей с инициативой.">Web制作、システム開発、クラウド導入支援を行っています。</p>
@@ -854,6 +1008,34 @@ footer a:hover {
       </ul>
     </div>
 
+    <div class="card" id="process">
+      <h2 data-ja="🗺️ 開発の流れ" data-en="🗺️ Development Process" data-ru="🗺️ Процесс разработки">🗺️ 開発の流れ</h2>
+      <p data-ja="プロジェクトがアイデアから完成に至るまでの4ステップです。" data-en="Four steps from idea to project completion." data-ru="Четыре шага от идеи до завершения проекта.">プロジェクトがアイデアから完成に至るまでの4ステップです。</p>
+
+      <div class="process-steps">
+        <div class="step-card">
+          <div class="step-num">STEP 01</div>
+          <h4 data-ja="💡 閃き (Idea)" data-en="💡 Inspiration" data-ru="💡 Вдохновение">💡 閃き (Idea)</h4>
+          <p data-ja="勢いでアイデアを出す。" data-en="Generate ideas with momentum." data-ru="Генерация идей.">勢いでアイデアを出す。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 02</div>
+          <h4 data-ja="⚡ 爆速作成 (Build)" data-en="⚡ Rapid Build" data-ru="⚡ Быстрая сборка">⚡ 爆速作成 (Build)</h4>
+          <p data-ja="悩む前にまずコードを書く。" data-en="Code before overthinking." data-ru="Пишите код без сомнений.">悩む前にまずコードを書く。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 03</div>
+          <h4 data-ja="🎨 研磨 (Refine)" data-en="🎨 Refine UI/UX" data-ru="🎨 Доработка">🎨 研磨 (Refine)</h4>
+          <p data-ja="UXとデザインを磨き上げる。" data-en="Polish UI and overall experience." data-ru="Улучшение UI и UX.">UXとデザインを磨き上げる。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">STEP 04</div>
+          <h4 data-ja="🎉 公開 (Release)" data-en="🎉 Release & Cat Check" data-ru="🎉 Релиз">🎉 公開 (Release)</h4>
+          <p data-ja="完成！猫に見せて公開。" data-en="Completed & published!" data-ru="Готово и опубликовано!">完成！猫に見せて公開。</p>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="portfolio">
       <h2 data-ja="🎨 ポートフォリオ" data-en="🎨 Portfolio" data-ru="🎨 Портфель">🎨 ポートフォリオ</h2>
       <p data-ja="過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。" data-en="Here are our past projects. Click for details." data-ru="Вот наши прошлые проекты. Нажмите для деталей.">過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。</p>
@@ -861,7 +1043,7 @@ footer a:hover {
       <div class="filter-controls">
         <button class="filter-btn active" onclick="filterProjects('all', event)" data-ja="すべて" data-en="All" data-ru="Все">すべて</button>
         <button class="filter-btn" onclick="filterProjects('web', event)" data-ja="Web" data-en="Web" data-ru="Веб">Web</button>
-        <button class="filter-btn" onclick="filterProjects('ai', event)" data-ja="AI" data-en="AI" data-ru="ИИ">AI</button>
+        <button class="filter-btn" onclick="filterProjects('app', event)" data-ja="ツール" data-en="Tools" data-ru="Инструменты">ツール</button>
         <button class="filter-btn" onclick="filterProjects('game', event)" data-ja="ゲーム" data-en="Game" data-ru="Игра">ゲーム</button>
       </div>
 
@@ -876,13 +1058,12 @@ footer a:hover {
           </div>
         </div>
 
-        <div class="portfolio-card" onclick="openModal('project2')" data-category="ai">
-          <h4 data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h4>
-          <p data-ja="画像から猫を自動検出するAIシステム。" data-en="AI system that automatically detects cats from images." data-ru="Система ИИ, которая автоматически обнаруживает кошек с изображений.">画像から猫を自動検出するAIシステム。</p>
+        <div class="portfolio-card" onclick="openModal('project2')" data-category="app">
+          <h4 data-ja="爆破飲料配合シミュレーター" data-en="Explosion Drink Simulator" data-ru="Симулятор взрывного напитка">爆破飲料配合シミュレーター</h4>
+          <p data-ja="好きな素材を混ぜて最強の爆破飲料を作るジョークツール。" data-en="A joke tool to mix ingredients and create the ultimate explosion drink." data-ru="Шуточный инструмент для создания взрывного напитка.">好きな素材を混ぜて最強の爆破飲料を作るジョークツール。</p>
           <div class="tech-tags">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML5 Canvas</span>
           </div>
         </div>
 
@@ -919,7 +1100,6 @@ footer a:hover {
           <ul class="skill-list">
             <li data-ja="React" data-en="React" data-ru="React">React</li>
             <li data-ja="Node.js" data-en="Node.js" data-ru="Node.js">Node.js</li>
-            <li data-ja="TensorFlow" data-en="TensorFlow" data-ru="TensorFlow">TensorFlow</li>
             <li data-ja="Django" data-en="Django" data-ru="Django">Django</li>
             <li data-ja="Unity" data-en="Unity" data-ru="Unity">Unity</li>
           </ul>
@@ -967,9 +1147,46 @@ footer a:hover {
           <div class="stat-label" data-ja="猫への愛" data-en="Love for Cats" data-ru="Любовь к кошкам">猫への愛</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">3,420</div>
-          <div class="stat-label" data-ja="消費カフェイン (杯)" data-en="Coffee Cups" data-ru="Чашек кофе">消費カフェイン (杯)</div>
+          <div class="stat-number">1,234</div>
+          <div class="stat-label" data-ja="猫にキーボードを踏まれた回数" data-en="Times Cat Stepped on Keyboard" data-ru="Раз, когда кошка踏ла клавиатуру">猫にキーボードを踏まれた回数</div>
         </div>
+      </div>
+    </div>
+
+    <div class="card" id="reviews">
+      <h2 data-ja="💬 利用者の声" data-en="💬 User Reviews" data-ru="💬 Отзывы">💬 利用者の声</h2>
+      <p data-ja="TKD株式会社のプロダクトを体験した方々からの感想です。" data-en="Feedback from people who experienced TKD products." data-ru="Отзывы людей, которые попробовали продукты ТКД.">TKD株式会社のプロダクトを体験した方々からの感想です。</p>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p data-ja="「勢いでWebサイト制作を依頼したら、翌朝にはプロトタイプが上がってきていて驚きました！」" data-en="'I requested web development on momentum, and was shocked to get a prototype by next morning!'" data-ru="'Я попросил создать сайт, и prototype был готов на следующее утро!'">「勢いでWebサイト制作を依頼したら、翌朝にはプロトタイプが上がってきていて驚きました！」</p>
+          <div class="review-author" data-ja="- Web担当 A氏" data-en="- Web Manager A" data-ru="- Веб-менеджер А">- Web担当 A氏</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p data-ja="「爆破飲料ゲームに中毒になっています。シンプルなのに何度も遊んでしまう魅力を感じます。」" data-en="'Addicted to Explosion Drink game. Simple yet amazingly replayable.'" data-ru="'Зависим от игры Взрывной напиток. Простая, но очень увлекательная.'">「爆破飲料ゲームに中毒になっています。シンプルなのに何度も遊んでしまう魅力を感じます。」</p>
+          <div class="review-author" data-ja="- ゲーマー B氏" data-en="- Gamer B" data-ru="- Геймер Б">- ゲーマー B氏</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p data-ja="「サイトの至るところに猫へのリスペクトを感じます。ダークモードの切り替えも快適！」" data-en="'I feel love for cats everywhere on this site. Dark mode toggle is super comfortable!'" data-ru="'Чувствую любовь к кошкам повсюду на этом сайте. Переключение темного режима супер!'">「サイトの至るところに猫へのリスペクトを感じます。ダークモードの切り替えも快適！」</p>
+          <div class="review-author" data-ja="- 猫好きエンジニア C氏" data-en="- Cat Lover Engineer C" data-ru="- Инженер-кошатник В">- 猫好きエンジニア C氏</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="cat-gallery">
+      <h2 data-ja="📸 本日の猫（猫の布教活動）" data-en="📸 Daily Cat (Cat Evangelism)" data-ru="📸 Кошка дня">📸 本日の猫（猫の布教活動）</h2>
+      <p data-ja="APIを使ってリアルタイムでランダムな猫をお届けします。癒やされていってください。" data-en="Delivering random cats in real-time via API. Enjoy the healing power!" data-ru="Случайные кошки в реальном времени через API. Наслаждайтесь!">APIを使ってリアルタイムでランダムな猫をお届けします。癒やされていってください。</p>
+
+      <div class="cat-gallery-box">
+        <div class="cat-img-container" id="catImageContainer">
+          <span data-ja="ボタンを押すと猫が表示されます 🐱" data-en="Click button to load a cat 🐱" data-ru="Нажмите кнопку, чтобы загрузить кошку 🐱">ボタンを押すと猫が表示されます 🐱</span>
+        </div>
+        <button class="btn-secondary" onclick="fetchRandomCat()" data-ja="🐱 新しい猫を呼ぶ" data-en="🐱 Load New Cat" data-ru="🐱 Загрузить кошку">🐱 新しい猫を呼ぶ</button>
       </div>
     </div>
 
@@ -1010,51 +1227,34 @@ footer a:hover {
       </ul>
     </div>
 
-    <div class="card" id="updates">
-      <h2 data-ja="📜 更新履歴" data-en="📜 Updates" data-ru="📜 История обновлений">📜 更新履歴</h2>
-      <ul class="timeline">
-        <li>
-          <strong data-ja="2026年7月20日" data-en="July 20, 2026" data-ru="20 июля 2026 г.">2026年7月20日</strong>
-          <span data-ja="デザイン・UX強化＆FAQ・問い合わせフォームなどの新セクションを追加！" data-en="Enhanced UX & Design! Added FAQ and Contact Form sections." data-ru="Улучшен дизайн и интерфейс! Добавлены разделы ЧАВО и Контакты.">デザイン・UX強化＆FAQ・問い合わせフォームなどの新セクションを追加！</span>
-        </li>
-        <li>
-          <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
-          <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English, Russian)!" data-ru="Реализована многоязычная поддержка!">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
-        </li>
-        <li>
-          <strong data-ja="2026年7月15日" data-en="July 15, 2026" data-ru="15 июля 2026 г.">2026年7月15日</strong>
-          <span data-ja="TKD株式会社の公式ホームページがオープンしました。" data-en="TKD Co., Ltd.'s official website opened." data-ru="Официальный сайт ТКД Компании открыт.">TKD株式会社の公式ホームページがオープンしました。</span>
-        </li>
-      </ul>
-    </div>
-
     <div class="card" id="contact">
       <h2 data-ja="✉️ お問い合わせ" data-en="✉️ Contact Us" data-ru="✉️ Свяжитесь с нами">✉️ お問い合わせ</h2>
-      <p data-ja="ご質問、ご依頼、メッセージなどは以下のフォームよりお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions or requests." data-ru="Не стесняйтесь связаться с нами по любым вопросам.">ご質問、ご依頼、メッセージなどは以下のフォームよりお気軽にお問い合わせください。</p>
+      <p data-ja="ご質問、ご依頼、サイト改善案などは以下のフォームよりお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions, requests, or site suggestions." data-ru="Не стесняйтесь связаться с нами по любым вопросам.">ご質問、ご依頼、サイト改善案などは以下のフォームよりお気軽にお問い合わせください。</p>
 
       <form class="contact-form" onsubmit="handleContactSubmit(event)">
         <div class="form-group">
           <label data-ja="お名前" data-en="Your Name" data-ru="Ваше имя">お名前</label>
-          <input type="text" class="form-control" placeholder="猫山 太郎" required>
+          <input type="text" id="contactName" class="form-control" placeholder="猫山 太郎" required>
         </div>
         <div class="form-group">
           <label data-ja="メールアドレス" data-en="Email Address" data-ru="Электронная почта">メールアドレス</label>
-          <input type="email" class="form-control" placeholder="example@tkd.example" required>
+          <input type="email" id="contactEmail" class="form-control" placeholder="example@tkd.example" required>
         </div>
         <div class="form-group">
           <label data-ja="お問い合わせ種別" data-en="Category" data-ru="Категория">お問い合わせ種別</label>
-          <select class="form-control">
-            <option data-ja="Web制作のご相談" data-en="Web Development" data-ru="Веб-разработка">Web制作のご相談</option>
-            <option data-ja="ゲーム制作のご相談" data-en="Game Development" data-ru="Разработка игр">ゲーム制作のご相談</option>
-            <option data-ja="猫に関する雑談" data-en="Cat Chat" data-ru="Чат о кошках">猫に関する雑談</option>
-            <option data-ja="その他" data-en="Other" data-ru="Другое">その他</option>
+          <select id="contactCategory" class="form-control">
+            <option value="このサイトの改善案" data-ja="💡 このサイトの改善案" data-en="💡 Site Improvement Ideas" data-ru="💡 Идеи по улучшению сайта">💡 このサイトの改善案</option>
+            <option value="Web制作のご相談" data-ja="Web制作のご相談" data-en="Web Development" data-ru="Веб-разработка">Web制作のご相談</option>
+            <option value="ゲーム制作のご相談" data-ja="ゲーム制作のご相談" data-en="Game Development" data-ru="Разработка игр">ゲーム制作のご相談</option>
+            <option value="猫に関する雑談" data-ja="猫に関する雑談" data-en="Cat Chat" data-ru="Чат о кошках">猫に関する雑談</option>
+            <option value="その他" data-ja="その他" data-en="Other" data-ru="Другое">その他</option>
           </select>
         </div>
         <div class="form-group">
           <label data-ja="メッセージ本文" data-en="Message" data-ru="Сообщение">メッセージ本文</label>
-          <textarea class="form-control" placeholder="お問い合わせ内容をご記入ください..." required></textarea>
+          <textarea id="contactMessage" class="form-control" placeholder="お問い合わせ内容やサイト改善案をご記入ください..." required></textarea>
         </div>
-        <button type="submit" class="submit-btn" data-ja="送信する" data-en="Send Message" data-ru="Отправить">送信する</button>
+        <button type="submit" class="submit-btn" data-ja="送信する（メール作成）" data-en="Send Message" data-ru="Отправить">送信する（メール作成）</button>
       </form>
     </div>
   </section>
@@ -1065,21 +1265,14 @@ footer a:hover {
     <span class="close-modal" onclick="closeModal('project1')" aria-label="Close modal">&times;</span>
     <h2 id="project1Title" data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h2>
     <p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations." data-ru="Описание: Этот веб-сайт.">説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</p>
-    <p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
-    <ul>
-      <li data-ja="レスポンシブデザイン" data-en="Responsive Design" data-ru="Адаптивный дизайн">レスポンシブデザイン</li>
-      <li data-ja="ダークモード切り替え" data-en="Dark Mode Toggle" data-ru="Переключение темного режима">ダークモード切り替え</li>
-      <li data-ja="スムーズなアニメーション" data-en="Smooth Animations" data-ru="Плавная анимация">スムーズなアニメーション</li>
-      <li data-ja="多言語対応" data-en="Multilingual Support" data-ru="Поддержка нескольких языков">多言語対応</li>
-    </ul>
   </div>
 </div>
 
 <div id="project2Modal" class="modal" role="dialog" aria-labelledby="project2Title">
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('project2')" aria-label="Close modal">&times;</span>
-    <h2 id="project2Title" data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h2>
-    <p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。" data-en="Description: Image recognition model using TensorFlow." data-ru="Описание: Модель распознавания изображений.">説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。</p>
+    <h2 id="project2Title" data-ja="爆破飲料配合シミュレーター" data-en="Explosion Drink Simulator" data-ru="Симулятор взрывного напитка">爆破飲料配合シミュレーター</h2>
+    <p data-ja="説明: さまざまな素材を選んで組み合わせ、自分だけの爆破飲料を作るツールです。" data-en="Description: A tool to mix ingredients and create your own explosion drink." data-ru="Описание: Инструмент для создания собственного взрывного напитка.">説明: さまざまな素材を選んで組み合わせ、自分だけの爆破飲料を作るツールです。</p>
   </div>
 </div>
 
@@ -1193,17 +1386,47 @@ function toggleTheme() {
   }
 }
 
+// 猫画像取得 (The Cat API)
+function fetchRandomCat() {
+  const container = document.getElementById('catImageContainer');
+  container.innerHTML = '<span>🐱 猫を召喚中...</span>';
+  
+  fetch('https://api.thecatapi.com/v1/images/search')
+    .then(response => response.json())
+    .then(data => {
+      if (data && data[0] && data[0].url) {
+        container.innerHTML = `<img src="${data[0].url}" alt="Random Cat" loading="lazy">`;
+      } else {
+        container.innerHTML = '<span>猫の召喚に失敗しました 😿</span>';
+      }
+    })
+    .catch(() => {
+      container.innerHTML = '<span>猫の召喚に失敗しました 😿</span>';
+    });
+}
+
 // FAQ アコーディオン
 function toggleFaq(button) {
   const item = button.parentElement;
   item.classList.toggle('active');
 }
 
-// 問い合わせ送信ダミーイベント
+// お問い合わせ送信 (mailto: r4cbook@gmail.com 連携)
 function handleContactSubmit(e) {
   e.preventDefault();
-  alert('お問い合わせありがとうございます！勢いでメッセージを受け取りました🐱');
-  e.target.reset();
+  
+  const name = document.getElementById('contactName').value;
+  const email = document.getElementById('contactEmail').value;
+  const category = document.getElementById('contactCategory').value;
+  const message = document.getElementById('contactMessage').value;
+
+  const subject = encodeURIComponent(`【TKD問い合わせ】${category} - ${name}様`);
+  const body = encodeURIComponent(`お名前: ${name}\nメールアドレス: ${email}\n種別: ${category}\n\n【本文】\n${message}`);
+
+  // mailto リンクを発火してメールソフトを開く
+  window.location.href = `mailto:r4cbook@gmail.com?subject=${subject}&body=${body}`;
+  
+  alert('メールソフトを起動しました！そのまま送信してください🐱');
 }
 
 // モーダル機能
