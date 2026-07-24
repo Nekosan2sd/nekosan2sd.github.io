@@ -310,6 +310,46 @@ section {
     line-height: 1.7;
 }
 
+/* News List UI */
+.news-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.news-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-date {
+    font-size: var(--small-size);
+    color: var(--primary-color);
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.news-tag {
+    background: var(--primary-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.news-title {
+    font-size: var(--p-size);
+    flex: 1;
+}
+
 /* Feature / Why Choose Us Grid */
 .feature-grid {
     display: grid;
@@ -489,7 +529,7 @@ section {
     background: var(--primary-light);
 }
 
-/* Timeline */
+/* Timeline / History */
 .timeline {
     list-style: none;
     padding: 0;
@@ -815,18 +855,15 @@ footer {
     background: var(--primary-color);
     color: white;
     text-align: center;
-    padding: 24px;
+    padding: 28px 20px;
     margin-top: 60px;
     font-size: var(--p-size);
 }
 
 footer a {
     color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 /* Mobile Responsiveness Improvements */
@@ -865,6 +902,12 @@ footer a:hover {
         background: rgba(255,255,255,0.15);
         border-radius: 20px;
         flex-shrink: 0;
+    }
+
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 
     .hero {
@@ -922,11 +965,13 @@ footer a:hover {
   
   <nav role="navigation">
     <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании">会社概要</a>
+    <a href="#news" data-ja="ニュース" data-en="News" data-ru="Новости">ニュース</a>
     <a href="#vision" data-ja="企業理念" data-en="Vision" data-ru="Видение">企業理念</a>
     <a href="#why-us" data-ja="選ばれる理由" data-en="Why Us" data-ru="Почему мы">選ばれる理由</a>
     <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</a>
     <a href="#process" data-ja="開発の流れ" data-en="Process" data-ru="Процесс">開発の流れ</a>
     <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</a>
+    <a href="#history" data-ja="沿革" data-en="History" data-ru="История">沿革</a>
     <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки">スキル</a>
     <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика">実績</a>
     <a href="#reviews" data-ja="利用者の声" data-en="Reviews" data-ru="Отзывы">利用者の声</a>
@@ -948,6 +993,27 @@ footer a:hover {
     <div class="card" id="about">
       <h2 data-ja="🏢 会社概要" data-en="🏢 About Us" data-ru="🏢 О нас">🏢 会社概要</h2>
       <p data-ja="TKD株式会社は、勢いだけで設立された伝説の架空企業です。事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。" data-en="TKD Co., Ltd. is a legendary fictional company founded purely on momentum. Our business includes web development, programming, game research, and cat evangelism." data-ru="ТКД Компания — это легендарная вымышленная компания, основанная исключительно по инициативе. Наша деятельность включает веб-разработку, программирование, исследование игр и евангелизм кошек.">TKD株式会社は、勢いだけで設立された伝説の架空企業です。</p>
+    </div>
+
+    <div class="card" id="news">
+      <h2 data-ja="📰 ニュース・お知らせ" data-en="📰 News & Topics" data-ru="📰 Новости">📰 ニュース・お知らせ</h2>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">2026.07.24</span>
+          <span class="news-tag" data-ja="お知らせ" data-en="Notice" data-ru="Извещение">お知らせ</span>
+          <span class="news-title" data-ja="TKD公式サイトの大型機能更新を実施しました。" data-en="Major feature updates were performed on TKD Official Site." data-ru="На сайте ТКД проведено крупное обновление.">TKD公式サイトの大型機能更新を実施しました。</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.07.20</span>
+          <span class="news-tag" data-ja="プレス" data-en="Press" data-ru="Пресса">プレス</span>
+          <span class="news-title" data-ja="多言語自動対応およびレスポンシブデザインの最適化を完了。" data-en="Multilingual support and responsive design optimization completed." data-ru="Завершена многоязычная поддержка и оптимизация.">多言語自動対応およびレスポンシブデザインの最適化を完了。</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026.07.15</span>
+          <span class="news-tag" data-ja="お知らせ" data-en="Notice" data-ru="Извещение">お知らせ</span>
+          <span class="news-title" data-ja="TKD株式会社の公式ホームページを開設しました。" data-en="Opened TKD Co., Ltd. official website." data-ru="Официальный сайт ТКД Компании открыт.">TKD株式会社の公式ホームページを開設しました。</span>
+        </li>
+      </ul>
     </div>
 
     <div class="card" id="vision">
@@ -1077,6 +1143,21 @@ footer a:hover {
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="card" id="history">
+      <h2 data-ja="📜 沿革・企業のあゆみ" data-en="📜 Company History" data-ru="📜 История компании">📜 沿革・企業のあゆみ</h2>
+      <p data-ja="TKD株式会社が設立から現在までに歩んできた道のりです。" data-en="The path TKD Co., Ltd. has walked from establishment to present." data-ru="Путь ТКД Компании от основания до настоящего времени.">TKD株式会社が設立から現在までに歩んできた道のりです。</p>
+      <ul class="timeline">
+        <li>
+          <strong data-ja="2026年7月" data-en="July 2026" data-ru="Июль 2026">2026年7月</strong>
+          <span data-ja="公式サイトの本格フルリニューアルおよび多言語・ダークモード化を完結。" data-en="Full renewal of the official site with multilingual and dark mode support." data-ru="Полное обновление официального сайта.">公式サイトの本格フルリニューアルおよび多言語・ダークモード化を完結。</span>
+        </li>
+        <li>
+          <strong data-ja="2026年7月" data-en="July 2026" data-ru="Июль 2026">2026年7月</strong>
+          <span data-ja="勢いでTKD株式会社（架空）を設立。GitHub Pagesにて公式WEBをローンチ。" data-en="Founded TKD Co., Ltd. on momentum. Launched official site on GitHub Pages." data-ru="Основание компании на инициативе. Запуск сайта.">勢いでTKD株式会社（架空）を設立。GitHub Pagesにて公式WEBをローンチ。</span>
+        </li>
+      </ul>
     </div>
 
     <div class="card" id="skills">
@@ -1284,11 +1365,26 @@ footer a:hover {
   </div>
 </div>
 
+<div id="privacyModal" class="modal" role="dialog" aria-labelledby="privacyTitle">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('privacy')" aria-label="Close modal">&times;</span>
+    <h2 id="privacyTitle" data-ja="プライバシーポリシー" data-en="Privacy Policy" data-ru="Политика конфиденциальности">プライバシーポリシー</h2>
+    <p data-ja="TKD株式会社（以下「当組織」）は、ユーザーの個人情報の取扱いについて以下の通り定めます。" data-en="TKD Co., Ltd. handles personal information as follows." data-ru="ТКД Компания обрабатывает личную информацию следующим образом.">TKD株式会社（以下「当組織」）は、ユーザーの個人情報の取扱いについて以下の通り定めます。</p>
+    <h4 data-ja="1. 個人情報の収集・利用目的" data-en="1. Purpose of Collection" data-ru="1. Цель сбора">1. 個人情報の収集・利用目的</h4>
+    <p data-ja="お問い合わせフォームより送信されたお名前やメールアドレスは、ご質問への回答およびご連絡以外の目的には使用いたしません。" data-en="Name and email submitted via contact form are used only for answering inquiries." data-ru="Имя и email используются только для ответов на запросы.">お問い合わせフォームより送信されたお名前やメールアドレスは、ご質問への回答およびご連絡以外の目的には使用いたしません。</p>
+    <h4 data-ja="2. 第三者提供の有無" data-en="2. Provision to Third Parties" data-ru="2. Предоставление третьим лицам">2. 第三者提供の有無</h4>
+    <p data-ja="取得した個人情報を法令に基づく場合を除き、第三者に開示・提供することはありません。" data-en="We will not provide personal information to third parties except as required by law." data-ru="Мы не предоставляем личную информацию третьим лицам.">取得した個人情報を法令に基づく場合を除き、第三者に開示・提供することはありません。</p>
+  </div>
+</div>
+
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="トップへ戻る" aria-label="Back to top">↑</button>
 
 <footer role="contentinfo">
-  <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания ✨ | "></span>
-  <a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a>
+  <div>
+    <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. ✨ | " data-ru="© 2026 ТКД Компания ✨ | "></span>
+    <a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a> | 
+    <a onclick="openModal('privacy')" data-ja="プライバシーポリシー" data-en="Privacy Policy" data-ru="Политика">プライバシーポリシー</a>
+  </div>
 </footer>
 
 <script>
@@ -1423,15 +1519,14 @@ function handleContactSubmit(e) {
   const subject = encodeURIComponent(`【TKD問い合わせ】${category} - ${name}様`);
   const body = encodeURIComponent(`お名前: ${name}\nメールアドレス: ${email}\n種別: ${category}\n\n【本文】\n${message}`);
 
-  // mailto リンクを発火してメールソフトを開く
   window.location.href = `mailto:r4cbook@gmail.com?subject=${subject}&body=${body}`;
   
   alert('メールソフトを起動しました！そのまま送信してください🐱');
 }
 
 // モーダル機能
-function openModal(projectId) {
-  const modalId = projectId + 'Modal';
+function openModal(modalIdKey) {
+  const modalId = modalIdKey.endsWith('Modal') ? modalIdKey : modalIdKey + 'Modal';
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.style.display = 'block';
@@ -1439,8 +1534,8 @@ function openModal(projectId) {
   }
 }
 
-function closeModal(projectId) {
-  const modalId = projectId + 'Modal';
+function closeModal(modalIdKey) {
+  const modalId = modalIdKey.endsWith('Modal') ? modalIdKey : modalIdKey + 'Modal';
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.style.display = 'none';
