@@ -7,6 +7,8 @@
 <meta name="theme-color" content="#003366">
 <meta name="author" content="Nekosan2sd">
 
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+
 <meta property="og:title" content="TKD株式会社 - 勢いと夢でできている企業">
 <meta property="og:description" content="Web制作、プログラミング、ゲーム開発、猫の布教活動などを行っている架空企業">
 <meta property="og:type" content="website">
@@ -31,30 +33,36 @@
 <style>
 * {
     box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 :root {
     --primary-color: #003366;
+    --primary-light: #004d99;
     --bg-color: #f4f6f8;
     --text-color: #222;
     --card-bg: white;
-    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --hover-shadow: 0 8px 20px rgba(0,0,0,0.15);
     --accent-color: #ff6b6b;
+    --border-color: #e2e8f0;
 }
 
 html.dark-mode {
     --primary-color: #00a8ff;
-    --bg-color: #1a1a1a;
+    --primary-light: #33b8ff;
+    --bg-color: #121212;
     --text-color: #e0e0e0;
-    --card-bg: #2d2d2d;
-    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    --card-bg: #1e1e1e;
+    --shadow: 0 4px 12px rgba(0,0,0,0.4);
+    --hover-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    --border-color: #333333;
 }
 
 /* Language-specific font sizes */
 html[data-language="ja"] {
     --base-font-size: 16px;
-    --h1-size: 40px;
+    --h1-size: 42px;
     --h2-size: 28px;
     --h3-size: 20px;
     --h4-size: 18px;
@@ -64,7 +72,7 @@ html[data-language="ja"] {
 
 html[data-language="en"] {
     --base-font-size: 15px;
-    --h1-size: 38px;
+    --h1-size: 40px;
     --h2-size: 26px;
     --h3-size: 19px;
     --h4-size: 17px;
@@ -74,7 +82,7 @@ html[data-language="en"] {
 
 html[data-language="ru"] {
     --base-font-size: 14px;
-    --h1-size: 36px;
+    --h1-size: 38px;
     --h2-size: 24px;
     --h3-size: 18px;
     --h4-size: 16px;
@@ -97,7 +105,7 @@ body {
 header {
     background: var(--primary-color);
     color: white;
-    padding: 15px 20px;
+    padding: 15px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -111,7 +119,8 @@ header {
 
 header h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
+    letter-spacing: 0.5px;
 }
 
 .header-controls {
@@ -124,11 +133,10 @@ header h2 {
     background: rgba(255,255,255,0.2);
     border: none;
     color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
-    transition: background 0.3s;
     font-weight: bold;
     min-height: 40px;
     display: inline-flex;
@@ -153,11 +161,12 @@ header h2 {
     background: var(--card-bg);
     color: var(--text-color);
     border: 2px solid var(--primary-color);
-    border-radius: 5px;
-    min-width: 130px;
+    border-radius: 8px;
+    min-width: 140px;
     z-index: 1000;
     box-shadow: var(--shadow);
-    margin-top: 5px;
+    margin-top: 8px;
+    overflow: hidden;
 }
 
 .lang-dropdown.active {
@@ -167,14 +176,13 @@ header h2 {
 .lang-dropdown button {
     display: block;
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     border: none;
     background: none;
     cursor: pointer;
     text-align: left;
     font-size: 14px;
     color: var(--text-color);
-    transition: background 0.3s;
 }
 
 .lang-dropdown button:hover {
@@ -190,70 +198,60 @@ header h2 {
 nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 18px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 0;
-    transition: all 0.3s;
+    padding: 6px 0;
 }
 
 nav a:hover {
     text-decoration: underline;
-    transform: scale(1.05);
+    opacity: 0.9;
 }
 
 .hero {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px 60px;
     background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
     animation: slideDown 0.8s ease-out;
 }
 
 @keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero img {
-    max-width: 260px;
+    max-width: 280px;
     width: 100%;
     height: auto;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    border-radius: 18px;
+    margin-bottom: 24px;
     box-shadow: var(--shadow);
     animation: zoomIn 0.8s ease-out;
 }
 
 @keyframes zoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .hero h1 {
     font-size: var(--h1-size);
-    margin: 10px 0;
+    margin: 12px 0;
     animation: fadeIn 1s ease-out 0.2s both;
 }
 
 .hero p {
     font-size: var(--p-size);
     animation: fadeIn 1s ease-out 0.4s both;
+    color: var(--text-color);
+    opacity: 0.9;
 }
 
 @keyframes fadeIn {
@@ -266,29 +264,24 @@ main {
 }
 
 section {
-    padding: 20px;
+    padding: 40px 20px;
     max-width: 1000px;
     margin: auto;
 }
 
 .card {
     background: var(--card-bg);
-    padding: 25px;
-    margin-top: 20px;
-    border-radius: 10px;
+    padding: 32px;
+    margin-top: 30px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
     animation: slideUp 0.6s ease-out;
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .card h2 {
@@ -296,13 +289,16 @@ section {
     font-size: var(--h2-size);
     color: var(--primary-color);
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .card h3 {
     font-size: var(--h3-size);
     color: var(--primary-color);
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .card h4 {
@@ -311,15 +307,70 @@ section {
 
 .card p {
     font-size: var(--p-size);
+    line-height: 1.7;
 }
 
+/* Vision / Philosophy Cards */
+.vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.vision-box {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    border-top: 4px solid var(--primary-color);
+}
+
+.vision-box h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.vision-box p {
+    font-size: calc(var(--p-size) * 0.95);
+    margin-bottom: 0;
+}
+
+/* Stats Section */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.stat-card {
+    background: var(--bg-color);
+    padding: 24px 15px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: var(--small-size);
+    font-weight: 500;
+}
+
+/* Timeline */
 .timeline {
     list-style: none;
     padding: 0;
 }
 
 .timeline li {
-    padding: 15px 0 15px 30px;
+    padding: 16px 0 16px 32px;
     position: relative;
     border-left: 2px solid var(--primary-color);
     margin-left: 10px;
@@ -330,41 +381,41 @@ section {
     content: '';
     position: absolute;
     left: -7px;
-    top: 20px;
+    top: 22px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background: var(--primary-color);
-    box-shadow: 0 0 0 3px var(--bg-color);
+    box-shadow: 0 0 0 4px var(--bg-color);
 }
 
 .timeline li strong {
     color: var(--primary-color);
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 /* Portfolio Grid */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
 }
 
 .portfolio-card {
     background: var(--card-bg);
-    border: 2px solid var(--primary-color);
-    border-radius: 10px;
-    padding: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
     cursor: pointer;
-    transition: all 0.3s;
     box-shadow: var(--shadow);
 }
 
 .portfolio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transform: translateY(-6px);
+    border-color: var(--primary-color);
+    box-shadow: var(--hover-shadow);
 }
 
 .portfolio-card h4 {
@@ -381,34 +432,15 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 14px;
 }
 
 .tech-tag {
     background: var(--primary-color);
     color: white;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 15px;
     font-size: var(--small-size);
-    animation: popIn 0.4s ease-out;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.tech-tag:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
-}
-
-@keyframes popIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 /* Filter Controls */
@@ -416,7 +448,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 20px 0;
+    margin: 24px 0;
     align-items: center;
 }
 
@@ -424,13 +456,12 @@ section {
     background: var(--card-bg);
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 8px 18px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    transition: all 0.3s;
     font-size: var(--p-size);
-    min-height: 40px;
+    min-height: 42px;
 }
 
 .filter-btn:hover, .filter-btn.active {
@@ -441,15 +472,15 @@ section {
 /* Skills Section */
 .skills-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .skill-category {
-    background: var(--card-bg);
-    padding: 15px;
-    border-radius: 8px;
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
     border-left: 4px solid var(--primary-color);
 }
 
@@ -466,8 +497,8 @@ section {
 }
 
 .skill-list li {
-    padding: 5px 0;
-    padding-left: 20px;
+    padding: 6px 0;
+    padding-left: 22px;
     position: relative;
     font-size: var(--p-size);
 }
@@ -478,6 +509,141 @@ section {
     left: 0;
     color: var(--primary-color);
     font-weight: bold;
+}
+
+/* FAQ Accordion */
+.faq-list {
+    margin-top: 20px;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: var(--bg-color);
+    padding: 16px 20px;
+    border: none;
+    font-size: var(--p-size);
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:after {
+    content: '＋';
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.faq-item.active .faq-question:after {
+    content: '－';
+}
+
+.faq-answer {
+    display: none;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    line-height: 1.6;
+    font-size: var(--p-size);
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Contact Form UI */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: var(--small-size);
+}
+
+.form-control {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: var(--p-size);
+    font-family: inherit;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.15);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: var(--p-size);
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start;
+    box-shadow: var(--shadow);
+}
+
+.submit-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--hover-shadow);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Modal */
@@ -495,28 +661,15 @@ section {
 
 .modal-content {
     background: var(--card-bg);
-    margin: 10% auto;
-    padding: 25px;
-    border-radius: 10px;
+    margin: 8% auto;
+    padding: 30px;
+    border-radius: 12px;
     width: 90%;
     max-width: 600px;
     animation: slideUp 0.4s;
     max-height: 80vh;
     overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.modal-content h2 {
-    font-size: var(--h2-size);
-    margin-top: 0;
-}
-
-.modal-content h3 {
-    font-size: var(--h3-size);
-}
-
-.modal-content p, .modal-content li {
-    font-size: var(--p-size);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .close-modal {
@@ -526,7 +679,6 @@ section {
     font-weight: bold;
     cursor: pointer;
     line-height: 1;
-    transition: color 0.3s;
 }
 
 .close-modal:hover {
@@ -537,15 +689,14 @@ footer {
     background: var(--primary-color);
     color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 24px;
+    margin-top: 60px;
     font-size: var(--p-size);
 }
 
 footer a {
     color: white;
     text-decoration: none;
-    transition: all 0.3s;
 }
 
 footer a:hover {
@@ -557,8 +708,8 @@ footer a:hover {
     header {
         flex-direction: column;
         align-items: stretch;
-        padding: 12px 15px;
-        gap: 10px;
+        padding: 12px 16px;
+        gap: 12px;
     }
 
     .header-top {
@@ -577,49 +728,49 @@ footer a:hover {
         display: flex;
         overflow-x: auto;
         white-space: nowrap;
-        padding-bottom: 5px;
+        padding-bottom: 6px;
         -webkit-overflow-scrolling: touch;
         gap: 10px;
     }
 
     nav a {
         font-size: 14px;
-        padding: 6px 12px;
+        padding: 6px 14px;
         background: rgba(255,255,255,0.15);
-        border-radius: 15px;
+        border-radius: 20px;
         flex-shrink: 0;
     }
 
     .hero {
-        padding: 40px 15px;
+        padding: 50px 16px 40px;
     }
 
     .hero h1 {
         font-size: calc(var(--h1-size) * 0.7);
     }
 
-    .hero p {
-        font-size: calc(var(--p-size) * 0.95);
-    }
-
     section {
-        padding: 10px 15px;
+        padding: 15px 16px;
     }
 
     .card {
-        padding: 18px;
-        margin-top: 15px;
+        padding: 20px;
+        margin-top: 20px;
     }
 
-    .portfolio-grid, .skills-container {
+    .portfolio-grid, .skills-container, .vision-grid {
         grid-template-columns: 1fr;
     }
 
-    .modal-content {
-        width: 92%;
-        margin: 15% auto;
-        padding: 20px;
-        max-height: 75vh;
+    .submit-btn {
+        width: 100%;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
     }
 }
 </style>
@@ -645,9 +796,12 @@ footer a:hover {
   
   <nav role="navigation">
     <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании">会社概要</a>
+    <a href="#vision" data-ja="企業理念" data-en="Vision" data-ru="Видение">企業理念</a>
     <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</a>
     <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</a>
     <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки">スキル</a>
+    <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика">実績</a>
+    <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО">FAQ</a>
     <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик">開発者</a>
     <a href="#updates" data-ja="更新履歴" data-en="Updates" data-ru="Обновления">更新履歴</a>
     <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты">お問い合わせ</a>
@@ -663,12 +817,32 @@ footer a:hover {
 <main>
   <section>
     <div class="card" id="about">
-      <h2 data-ja="会社概要" data-en="About Us" data-ru="О нас">会社概要</h2>
+      <h2 data-ja="🏢 会社概要" data-en="🏢 About Us" data-ru="🏢 О нас">🏢 会社概要</h2>
       <p data-ja="TKD株式会社は、勢いだけで設立された伝説の架空企業です。事業内容はWeb制作、プログラミング、ゲーム研究、猫の布教活動など。" data-en="TKD Co., Ltd. is a legendary fictional company founded purely on momentum. Our business includes web development, programming, game research, and cat evangelism." data-ru="ТКД Компания — это легендарная вымышленная компания, основанная исключительно по инициативе. Наша деятельность включает веб-разработку, программирование, исследование игр и евангелизм кошек.">TKD株式会社は、勢いだけで設立された伝説の架空企業です。</p>
     </div>
 
+    <div class="card" id="vision">
+      <h2 data-ja="🎯 企業理念・行動指針" data-en="🎯 Our Vision" data-ru="🎯 Наше видение">🎯 企業理念・行動指針</h2>
+      <p data-ja="TKD株式会社が大切にしている3つの基本原則です。" data-en="Three core principles that TKD Co., Ltd. values." data-ru="Три основных принципа, которые ценит ТКД Компания.">TKD株式会社が大切にしている3つの基本原則です。</p>
+
+      <div class="vision-grid">
+        <div class="vision-box">
+          <h4 data-ja="⚡ 勢い最優先" data-en="⚡ Momentum First" data-ru="⚡ Инициатива прежде всего">⚡ 勢い最優先</h4>
+          <p data-ja="アイデアが浮かんだら、悩む前にコードを書く。直感と熱量をカタチにします。" data-en="When an idea strikes, code before overthinking. Turn intuition and passion into reality." data-ru="Когда возникает идея, пишите код, не задумываясь. Превращайте интуицию в реальность.">アイデアが浮かんだら、悩む前にコードを書く。直感と熱量をカタチにします。</p>
+        </div>
+        <div class="vision-box">
+          <h4 data-ja="🧪 探求心と遊び心" data-en="⚡ Curiosity & Playfulness" data-ru="⚡ Любопытство и игривость">🧪 探求心と遊び心</h4>
+          <p data-ja="最新技術を常に試し、自分たちが一番ワクワクするプロダクトを作り続けます。" data-en="Always test the latest technologies and keep creating products that excite us the most." data-ru="Всегда тестируйте новейшие технологии и создавайте продукты, которые нас вдохновляют.">最新技術を常に試し、自分たちが一番ワクワクするプロダクトを作り続けます。</p>
+        </div>
+        <div class="vision-box">
+          <h4 data-ja="🐱 猫優先主義" data-en="⚡ Cat Priority" data-ru="⚡ Кошки в приоритете">🐱 猫優先主義</h4>
+          <p data-ja="すべての猫に敬意を払い、猫の癒やしパワーを開発の原動力として活用します。" data-en="Respect all cats and leverage their healing power as the driving force for development." data-ru="Уважайте всех кошек и используйте их исцеляющую силу как движущую силу.">すべての猫に敬意を払い、猫の癒やしパワーを開発の原動力として活用します。</p>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="service">
-      <h2 data-ja="事業内容" data-en="Services" data-ru="Услуги">事業内容</h2>
+      <h2 data-ja="💼 事業内容" data-en="💼 Services" data-ru="💼 Услуги">💼 事業内容</h2>
       <p data-ja="Web制作、システム開発、クラウド導入支援を行っています。現在は主に、面白そうなものを勢いで作る活動に力を入れています。" data-en="We provide web development, system development, and cloud implementation support. Currently, we focus on creating interesting things with momentum." data-ru="Мы предоставляем веб-разработку, разработку систем и поддержку внедрения облака. В настоящее время мы сосредоточены на создании интересных вещей с инициативой.">Web制作、システム開発、クラウド導入支援を行っています。</p>
       <h3 data-ja="主な事業" data-en="Main Services" data-ru="Основные услуги">主な事業</h3>
       <ul>
@@ -681,7 +855,7 @@ footer a:hover {
     </div>
 
     <div class="card" id="portfolio">
-      <h2 data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель">ポートフォリオ</h2>
+      <h2 data-ja="🎨 ポートフォリオ" data-en="🎨 Portfolio" data-ru="🎨 Портфель">🎨 ポートフォリオ</h2>
       <p data-ja="過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。" data-en="Here are our past projects. Click for details." data-ru="Вот наши прошлые проекты. Нажмите для деталей.">過去に作成したプロジェクト一覧です。クリックで詳細をご覧いただけます。</p>
 
       <div class="filter-controls">
@@ -725,7 +899,7 @@ footer a:hover {
     </div>
 
     <div class="card" id="skills">
-      <h2 data-ja="スキル・技術スタック" data-en="Skills & Tech Stack" data-ru="Навыки и технический стек">スキル・技術スタック</h2>
+      <h2 data-ja="🛠️ スキル・技術スタック" data-en="🛠️ Skills & Tech Stack" data-ru="🛠️ Навыки и технический стек">🛠️ スキル・技術スタック</h2>
       <p data-ja="Nekosan2sdが使用できる言語・技術一覧です。" data-en="A list of languages and technologies that Nekosan2sd can use." data-ru="Список языков и технологий, которые может использовать Nekosan2sd.">Nekosan2sdが使用できる言語・技術一覧です。</p>
 
       <div class="skills-container">
@@ -741,7 +915,7 @@ footer a:hover {
         </div>
 
         <div class="skill-category">
-          <h4 data-ja="🔧 フレームワーク・ライブラリ" data-en="🔧 Frameworks & Libraries" data-ru="🔧 Фреймворки и библиотеки">🔧 フレームワーク・ライブラリ</h4>
+          <h4 data-ja="🔧 フレームワーク" data-en="🔧 Frameworks" data-ru="🔧 Фреймворки">🔧 フレームワーク</h4>
           <ul class="skill-list">
             <li data-ja="React" data-en="React" data-ru="React">React</li>
             <li data-ja="Node.js" data-en="Node.js" data-ru="Node.js">Node.js</li>
@@ -752,7 +926,7 @@ footer a:hover {
         </div>
 
         <div class="skill-category">
-          <h4 data-ja="☁️ インフラ・ツール" data-en="☁️ Infrastructure & Tools" data-ru="☁️ Инфраструктура и инструменты">☁️ インフラ・ツール</h4>
+          <h4 data-ja="☁️ インフラ・ツール" data-en="☁️ Infrastructure" data-ru="☁️ Инфраструктура">☁️ インフラ・ツール</h4>
           <ul class="skill-list">
             <li data-ja="Git/GitHub" data-en="Git/GitHub" data-ru="Git/GitHub">Git/GitHub</li>
             <li data-ja="Docker" data-en="Docker" data-ru="Docker">Docker</li>
@@ -763,54 +937,89 @@ footer a:hover {
         </div>
 
         <div class="skill-category">
-          <h4 data-ja="🎨 デザイン・その他" data-en="🎨 Design & Other" data-ru="🎨 Дизайн и прочее">🎨 デザイン・その他</h4>
+          <h4 data-ja="🎨 デザイン・その他" data-en="🎨 Design & Other" data-ru="🎨 Дизайн">🎨 デザイン・その他</h4>
           <ul class="skill-list">
-            <li data-ja="UI/UXデザイン" data-en="UI/UX Design" data-ru="Дизайн пользовательского интерфейса">UI/UXデザイン</li>
+            <li data-ja="UI/UXデザイン" data-en="UI/UX Design" data-ru="Дизайн">UI/UXデザイン</li>
             <li data-ja="Figma" data-en="Figma" data-ru="Figma">Figma</li>
-            <li data-ja="データ分析" data-en="Data Analysis" data-ru="Анализ данных">データ分析</li>
+            <li data-ja="データ分析" data-en="Data Analysis" data-ru="Анализ">データ分析</li>
             <li data-ja="API設計" data-en="API Design" data-ru="Дизайн API">API設計</li>
-            <li data-ja="🐱 猫知識" data-en="🐱 Cat Knowledge" data-ru="🐱 Знание о кошках">🐱 猫知識</li>
+            <li data-ja="🐱 猫知識" data-en="🐱 Cat Knowledge" data-ru="🐱 Кошки">🐱 猫知識</li>
           </ul>
         </div>
       </div>
     </div>
 
+    <div class="card" id="stats">
+      <h2 data-ja="📊 数字で見るTKD" data-en="📊 TKD in Numbers" data-ru="📊 ТКД в цифрах">📊 数字で見るTKD</h2>
+      <p data-ja="これまでの活動実績や日常の記録です。" data-en="Our track record and daily metrics." data-ru="Наши достижения и ежедневные показатели.">これまでの活動実績や日常の記録です。</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label" data-ja="勢い度" data-en="Momentum Rate" data-ru="Уровень инициативы">勢い度</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12+</div>
+          <div class="stat-label" data-ja="完成プロジェクト" data-en="Completed Projects" data-ru="Завершенные проекты">完成プロジェクト</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label" data-ja="猫への愛" data-en="Love for Cats" data-ru="Любовь к кошкам">猫への愛</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3,420</div>
+          <div class="stat-label" data-ja="消費カフェイン (杯)" data-en="Coffee Cups" data-ru="Чашек кофе">消費カフェイン (杯)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="faq">
+      <h2 data-ja="❓ よくある質問 (FAQ)" data-en="❓ FAQ" data-ru="❓ ЧАВО">❓ よくある質問 (FAQ)</h2>
+      
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" data-ja="Q. TKD株式会社は実在する企業ですか？" data-en="Q. Is TKD Co., Ltd. a real company?" data-ru="Q. Является ли ТКД Компания реальной компанией?">Q. TKD株式会社は実在する企業ですか？</button>
+          <div class="faq-answer" data-ja="いいえ、勢いと夢でつくられた架空の企業です。しかし、制作しているWebサイトやゲームは本物です！" data-en="No, it is a fictional company built on momentum and dreams. However, our websites and games are real!" data-ru="Нет, это вымышленная компания, созданная с инициативой. Однако наши веб-сайты и игры реальны!">いいえ、勢いと夢でつくられた架空の企業です。しかし、制作しているWebサイトやゲームは本物です！</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" data-ja="Q. Web制作やシステム開発の依頼はできますか？" data-en="Q. Can I request web development?" data-ru="Q. Могу ли я заказать веб-разработку?">Q. Web制作やシステム開発の依頼はできますか？</button>
+          <div class="faq-answer" data-ja="面白そうなプロジェクトであれば大歓迎です！下部のお問い合わせフォームよりお気軽にご連絡ください。" data-en="If it sounds like an interesting project, welcome! Feel free to contact us via the contact form below." data-ru="Если проект кажется интересным, добро пожаловать! Свяжитесь с нами через форму ниже.">面白そうなプロジェクトであれば大歓迎です！下部のお問い合わせフォームよりお気軽にご連絡ください。</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" data-ja="Q. 「爆破飲料」とは何ですか？" data-en="Q. What is 'Explosion Drink'?" data-ru="Q. Что такое 'Взрывной напиток'?">Q. 「爆破飲料」とは何ですか？</button>
+          <div class="faq-answer" data-ja="弊社を象徴する合言葉であり、勢いから生まれた自作ゲームのタイトルでもあります。" data-en="It is our slogan representing momentum and also the title of a casual game created by us." data-ru="Это наш лозунг, олицетворяющий инициативу, а также название созданной нами игры.">弊社を象徴する合言葉であり、勢いから生まれた自作ゲームのタイトルでもあります。</div>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="developer">
-      <h2 data-ja="開発者プロフィール" data-en="Developer Profile" data-ru="Профиль разработчика">開発者プロフィール</h2>
+      <h2 data-ja="👨‍💻 開発者プロフィール" data-en="👨‍💻 Developer Profile" data-ru="👨‍💻 Профиль разработчика">👨‍💻 開発者プロフィール</h2>
 
       <h3 data-ja="Nekosan2sd" data-en="Nekosan2sd" data-ru="Nekosan2sd">Nekosan2sd</h3>
       <p data-ja="このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。何か面白そうなアイデアがあれば、それを実装します。" data-en="The person who created this site. Recently learned about GitHub Pages and created this company site with momentum. If there's an interesting idea, I implement it." data-ru="Человек, создавший этот сайт. Недавно узнал о GitHub Pages и создал этот сайт компании с инициативой. Если есть интересная идея, я это реализую.">このサイトを作った人です。最近GitHub Pagesを覚えて、勢いで会社サイトを作りました。</p>
 
       <h4 data-ja="好きなもの" data-en="Interests" data-ru="Интересы">好きなもの</h4>
       <ul>
-        <li data-ja="🔧 プログラミング - あらゆる言語で何か作りたい" data-en="🔧 Programming - Want to create something in every language" data-ru="🔧 Программирование - хочу создать что-нибудь на каждом языке">🔧 プログラミング - あらゆる言語で何か作りたい</li>
-        <li data-ja="🎮 ゲーム - プレイも制作も大好き" data-en="🎮 Games - Love both playing and making games" data-ru="🎮 Игры - люблю и играть, и делать игры">🎮 ゲーム - プレイも制作も大好き</li>
-        <li data-ja="🐱 猫 - 猫は至高の存在" data-en="🐱 Cats - Cats are supreme beings" data-ru="🐱 Кошки - кошки - верховные существа">🐱 猫 - 猫は至高の存在</li>
-        <li data-ja="📊 データ分析 - 数字から物語を見つける" data-en="📊 Data Analysis - Find stories in numbers" data-ru="📊 Анализ данных - находить истории в числах">📊 データ分析 - 数字から物語を見つける</li>
-        <li data-ja="💡 新しい技術 - トレンドは常にチェック" data-en="💡 New Technologies - Always check trends" data-ru="💡 Новые технологии - всегда проверяю тренды">💡 新しい技術 - トレンドは常にチェック</li>
-      </ul>
-
-      <h4 data-ja="連絡先" data-en="Contact" data-ru="Контакты">連絡先</h4>
-      <ul>
-        <li>GitHub: <a href="https://github.com/Nekosan2sd" target="_blank" rel="noopener">@Nekosan2sd</a></li>
-        <li data-ja="メール: info@tkd.example" data-en="Email: info@tkd.example" data-ru="Электронная почта: info@tkd.example">メール: info@tkd.example</li>
+        <li data-ja="🔧 プログラミング - あらゆる言語で何か作りたい" data-en="🔧 Programming - Want to create something in every language" data-ru="🔧 Программирование">🔧 プログラミング - あらゆる言語で何か作りたい</li>
+        <li data-ja="🎮 ゲーム - プレイも制作も大好き" data-en="🎮 Games - Love both playing and making games" data-ru="🎮 Игры">🎮 ゲーム - プレイも制作も大好き</li>
+        <li data-ja="🐱 猫 - 猫は至高の存在" data-en="🐱 Cats - Cats are supreme beings" data-ru="🐱 Кошки">🐱 猫 - 猫は至高の存在</li>
+        <li data-ja="📊 データ分析 - 数字から物語を見つける" data-en="📊 Data Analysis - Find stories in numbers" data-ru="📊 Анализ данных">📊 データ分析 - 数字から物語を見つける</li>
+        <li data-ja="💡 新しい技術 - トレンドは常にチェック" data-en="💡 New Technologies - Always check trends" data-ru="💡 Новые технологии">💡 新しい技術 - トレンドは常にチェック</li>
       </ul>
     </div>
 
     <div class="card" id="updates">
-      <h2 data-ja="更新履歴" data-en="Updates" data-ru="История обновлений">更新履歴</h2>
+      <h2 data-ja="📜 更新履歴" data-en="📜 Updates" data-ru="📜 История обновлений">📜 更新履歴</h2>
       <ul class="timeline">
         <li>
-          <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
-          <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English, Russian)! Now you can switch languages anytime." data-ru="Реализована многоязычная поддержка (английский, русский)! Теперь вы можете переключаться между языками в любое время.">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
+          <strong data-ja="2026年7月20日" data-en="July 20, 2026" data-ru="20 июля 2026 г.">2026年7月20日</strong>
+          <span data-ja="デザイン・UX強化＆FAQ・問い合わせフォームなどの新セクションを追加！" data-en="Enhanced UX & Design! Added FAQ and Contact Form sections." data-ru="Улучшен дизайн и интерфейс! Добавлены разделы ЧАВО и Контакты.">デザイン・UX強化＆FAQ・問い合わせフォームなどの新セクションを追加！</span>
         </li>
         <li>
           <strong data-ja="2026年7月19日" data-en="July 19, 2026" data-ru="19 июля 2026 г.">2026年7月19日</strong>
-          <span data-ja="ブログモーダルを実装！3つの記事が読める機能を追加しました。" data-en="Implemented blog modals! Added a feature to read 3 articles." data-ru="Модальные окна блога реализованы! Добавлена функция для чтения 3 статей.">ブログモーダルを実装！3つの記事が読める機能を追加しました。</span>
-        </li>
-        <li>
-          <strong data-ja="2026年7月16日" data-en="July 16, 2026" data-ru="16 июля 2026 г.">2026年7月16日</strong>
-          <span data-ja="ホームページをリニューアル。更新履歴セクションを追加しました。" data-en="Renewed homepage. Added updates section." data-ru="Обновлена домашняя страница. Добавлен раздел обновлений.">ホームページをリニューアル。更新履歴セクションを追加しました。</span>
+          <span data-ja="多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。" data-en="Implemented multilingual support (English, Russian)!" data-ru="Реализована многоязычная поддержка!">多言語対応（英語・ロシア語）機能を実装！言語をいつでも切り替えられるようになりました。</span>
         </li>
         <li>
           <strong data-ja="2026年7月15日" data-en="July 15, 2026" data-ru="15 июля 2026 г.">2026年7月15日</strong>
@@ -820,13 +1029,33 @@ footer a:hover {
     </div>
 
     <div class="card" id="contact">
-      <h2 data-ja="お問い合わせ" data-en="Contact Us" data-ru="Свяжитесь с нами">お問い合わせ</h2>
-      <p data-ja="ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions, requests, or inquiries." data-ru="Не стесняйтесь связаться с нами по любым вопросам, запросам или запросам предложений.">ご質問、ご依頼、またはお見積もりのご要望は、以下のフォームでお気軽にお問い合わせください。</p>
+      <h2 data-ja="✉️ お問い合わせ" data-en="✉️ Contact Us" data-ru="✉️ Свяжитесь с нами">✉️ お問い合わせ</h2>
+      <p data-ja="ご質問、ご依頼、メッセージなどは以下のフォームよりお気軽にお問い合わせください。" data-en="Feel free to contact us with any questions or requests." data-ru="Не стесняйтесь связаться с нами по любым вопросам.">ご質問、ご依頼、メッセージなどは以下のフォームよりお気軽にお問い合わせください。</p>
 
-      <p style="margin-top: 20px; font-size: 14px;">
-        📧 <strong data-ja="メール:" data-en="Email:" data-ru="Электронная почта:">メール:</strong> info@tkd.example<br>
-        💻 <strong data-ja="GitHub:" data-en="GitHub:" data-ru="GitHub:">GitHub:</strong> <a href="https://github.com/Nekosan2sd" target="_blank" rel="noopener">github.com/Nekosan2sd</a><br>
-      </p>
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        <div class="form-group">
+          <label data-ja="お名前" data-en="Your Name" data-ru="Ваше имя">お名前</label>
+          <input type="text" class="form-control" placeholder="猫山 太郎" required>
+        </div>
+        <div class="form-group">
+          <label data-ja="メールアドレス" data-en="Email Address" data-ru="Электронная почта">メールアドレス</label>
+          <input type="email" class="form-control" placeholder="example@tkd.example" required>
+        </div>
+        <div class="form-group">
+          <label data-ja="お問い合わせ種別" data-en="Category" data-ru="Категория">お問い合わせ種別</label>
+          <select class="form-control">
+            <option data-ja="Web制作のご相談" data-en="Web Development" data-ru="Веб-разработка">Web制作のご相談</option>
+            <option data-ja="ゲーム制作のご相談" data-en="Game Development" data-ru="Разработка игр">ゲーム制作のご相談</option>
+            <option data-ja="猫に関する雑談" data-en="Cat Chat" data-ru="Чат о кошках">猫に関する雑談</option>
+            <option data-ja="その他" data-en="Other" data-ru="Другое">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-ja="メッセージ本文" data-en="Message" data-ru="Сообщение">メッセージ本文</label>
+          <textarea class="form-control" placeholder="お問い合わせ内容をご記入ください..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-ja="送信する" data-en="Send Message" data-ru="Отправить">送信する</button>
+      </form>
     </div>
   </section>
 </main>
@@ -835,7 +1064,7 @@ footer a:hover {
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('project1')" aria-label="Close modal">&times;</span>
     <h2 id="project1Title" data-ja="TKD公式サイト" data-en="TKD Official Website" data-ru="Официальный сайт ТКД">TKD公式サイト</h2>
-    <p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations. Dark mode compatible and remembers visitor theme settings." data-ru="Описание: Этот веб-сайт. Мы включили новейший веб-дизайн и анимацию. Совместимость с темным режимом и запоминание параметров темы для посетителей.">説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</p>
+    <p data-ja="説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。" data-en="Description: This website itself. We incorporated the latest web design and animations." data-ru="Описание: Этот веб-сайт.">説明: このサイト自体です。最新のWebデザインとアニメーションを取り入れました。ダークモード対応で、訪問者のテーマ設定を記憶します。</p>
     <p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
     <ul>
       <li data-ja="レスポンシブデザイン" data-en="Responsive Design" data-ru="Адаптивный дизайн">レスポンシブデザイン</li>
@@ -850,13 +1079,7 @@ footer a:hover {
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('project2')" aria-label="Close modal">&times;</span>
     <h2 id="project2Title" data-ja="猫検出AI" data-en="Cat Detection AI" data-ru="ИИ для обнаружения кошек">猫検出AI</h2>
-    <p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。" data-en="Description: Image recognition model using TensorFlow. Determines whether cats are present in uploaded images. Constantly improving to achieve 99% accuracy." data-ru="Описание: Модель распознавания изображений с использованием TensorFlow. Определяет наличие кошек в загруженных изображениях. Постоянно совершенствуется для достижения точности 99%.">説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。精度99%を目指して日々改善中。</p>
-    <p><strong data-ja="機能:" data-en="Features:" data-ru="Особенности:">機能:</strong></p>
-    <ul>
-      <li data-ja="リアルタイム画像認識" data-en="Real-time Image Recognition" data-ru="Распознавание изображений в реальном времени">リアルタイム画像認識</li>
-      <li data-ja="複数猫の同時検出" data-en="Multiple Cat Detection" data-ru="Обнаружение нескольких кошек">複数猫の同時検出</li>
-      <li data-ja="信頼度スコア表示" data-en="Confidence Score Display" data-ru="Отображение показателя уверенности">信頼度スコア表示</li>
-    </ul>
+    <p data-ja="説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。" data-en="Description: Image recognition model using TensorFlow." data-ru="Описание: Модель распознавания изображений.">説明: TensorFlowを使用した画像認識モデル。アップロードされた画像から猫の有無を判定します。</p>
   </div>
 </div>
 
@@ -864,18 +1087,14 @@ footer a:hover {
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('project3')" aria-label="Close modal">&times;</span>
     <h2 id="project3Title" data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h2>
-    <p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。" data-en="Description: A casual game developed in Unity. Despite being made with momentum, it's surprisingly addictive. It's well-received by friends." data-ru="Описание: Казуальная игра, разработанная в Unity. Несмотря на то, что это было сделано с инициативой, это неожиданно вызывает привыкание. Пользуется хорошей репутацией у друзей.">説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。友人から好評です。</p>
-    <p><strong data-ja="ゲームシステム:" data-en="Game System:" data-ru="Игровая система:">ゲームシステム:</strong></p>
-    <ul>
-      <li data-ja="ターン制バトル" data-en="Turn-based Battle" data-ru="Пошаговые боевые действия">ターン制バトル</li>
-      <li data-ja="キャラクター育成要素" data-en="Character Growth Elements" data-ru="Элементы роста персонажей">キャラクター育成要素</li>
-      <li data-ja="リーダーボード機能" data-en="Leaderboard Feature" data-ru="Функция таблицы лидеров">リーダーボード機能</li>
-    </ul>
+    <p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。" data-en="Description: A casual game developed in Unity." data-ru="Описание: Казуальная игра, разработанная в Unity.">説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。</p>
   </div>
 </div>
 
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" title="トップへ戻る" aria-label="Back to top">↑</button>
+
 <footer role="contentinfo">
-  <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания - компания, сделанная из инициативы и мечты ✨ | "></span>
+  <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. - A company made of momentum and dreams ✨ | " data-ru="© 2026 ТКД Компания ✨ | "></span>
   <a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a>
 </footer>
 
@@ -898,6 +1117,20 @@ window.addEventListener('DOMContentLoaded', function() {
     button.textContent = '🌙';
   }
 });
+
+// スクロール検知（Back to Top ボタン）
+window.addEventListener('scroll', function() {
+  const backToTopBtn = document.getElementById('backToTop');
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('visible');
+  } else {
+    backToTopBtn.classList.remove('visible');
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 // 言語切り替え
 function setLanguage(lang) {
@@ -931,13 +1164,11 @@ function setLanguage(lang) {
   if (dropdown) dropdown.classList.remove('active');
 }
 
-// 言語ドロップダウン切り替え
 function toggleLangDropdown() {
   const dropdown = document.getElementById('langDropdown');
   dropdown.classList.toggle('active');
 }
 
-// 外側クリックでドロップダウンを閉じる
 document.addEventListener('click', function(event) {
   const selector = document.querySelector('.lang-selector');
   if (selector && !selector.contains(event.target)) {
@@ -962,6 +1193,19 @@ function toggleTheme() {
   }
 }
 
+// FAQ アコーディオン
+function toggleFaq(button) {
+  const item = button.parentElement;
+  item.classList.toggle('active');
+}
+
+// 問い合わせ送信ダミーイベント
+function handleContactSubmit(e) {
+  e.preventDefault();
+  alert('お問い合わせありがとうございます！勢いでメッセージを受け取りました🐱');
+  e.target.reset();
+}
+
 // モーダル機能
 function openModal(projectId) {
   const modalId = projectId + 'Modal';
@@ -981,7 +1225,6 @@ function closeModal(projectId) {
   }
 }
 
-// モーダル外クリックで閉じる
 window.onclick = function(event) {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = 'none';
@@ -989,7 +1232,6 @@ window.onclick = function(event) {
   }
 }
 
-// ESCキーでモーダルを閉じる
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     const modals = document.querySelectorAll('.modal');
@@ -1002,7 +1244,7 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-// ポートフォリオフィルタリング（eパラメータでイベントを正しく取得）
+// ポートフォリオフィルター
 function filterProjects(category, e) {
   const cards = document.querySelectorAll('.portfolio-card');
   const buttons = document.querySelectorAll('.filter-btn');
