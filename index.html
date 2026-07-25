@@ -1248,7 +1248,7 @@ footer a {
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
           <p data-ja="「爆破飲料ゲームに中毒になっています。シンプルなのに何度も遊んでしまう魅力を感じます。」" data-en="'Addicted to Explosion Drink game. Simple yet amazingly replayable.'" data-ru="'Зависим от игры Взрывной напиток. Простая, но очень увлекательная.'">「爆破飲料ゲームに中毒になっています。シンプルなのに何度も遊んでしまう魅力を感じます。」</p>
-          <div class="review-author" data-ja="- ゲーマー B氏" data-en="- Gamer B" data-ru="- Геймер Б">- ゲーマー B氏</div>
+          <div class="review-author" data-ja="- ゲーマー B氏" data-en="- Gamer B" data-ru="- Гейマー Б">- ゲーマー B氏</div>
         </div>
 
         <div class="review-card">
@@ -1361,7 +1361,7 @@ footer a {
   <div class="modal-content">
     <span class="close-modal" onclick="closeModal('project3')" aria-label="Close modal">&times;</span>
     <h2 id="project3Title" data-ja="ゲーム「爆破飲料」" data-en="Game 'Explosion Drink'" data-ru="Игра 'Взрывной напиток'">ゲーム「爆破飲料」</h2>
-    <p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。" data-en="Description: A casual game developed in Unity." data-ru="Описание: Казуальная игра, разработанная в Unity.">説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。</p>
+    <p data-ja="説明: Unityで制作したカジュアルゲーム。勢いで作ったにもかかわらず、意外と中毒性があります。" data-en="Description: A casual game developed in Unity." data-ru="Описание: Казуальная игра, разработанная в Unity.">説明: Unityで制作したカジュアルゲーム。意外と中毒性があります。</p>
   </div>
 </div>
 
@@ -1381,7 +1381,7 @@ footer a {
 
 <footer role="contentinfo">
   <div>
-    <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. ✨ | " data-ru="© 2026 ТКД Компания ✨ | "></span>
+    <span data-ja="© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | " data-en="© 2026 TKD Co., Ltd. ✨ | " data-ru="© 2026 ТКД Компания ✨ | ">© 2026 TKD株式会社 - 勢いと夢でできている企業 ✨ | </span>
     <a href="https://github.com/Nekosan2sd/nekosan2sd.github.io" target="_blank" rel="noopener" data-ja="GitHub リポジトリ" data-en="GitHub Repository" data-ru="Репозиторий GitHub">GitHub リポジトリ</a> | 
     <a onclick="openModal('privacy')" data-ja="プライバシーポリシー" data-en="Privacy Policy" data-ru="Политика">プライバシーポリシー</a>
   </div>
@@ -1429,6 +1429,7 @@ function setLanguage(lang) {
   
   const elements = document.querySelectorAll('[data-ja][data-en][data-ru]');
   elements.forEach(el => {
+    // ボタンのテキストやオプション要素の安全な差し替え
     if (lang === 'ja' && el.dataset.ja) {
       el.textContent = el.dataset.ja;
     } else if (lang === 'en' && el.dataset.en) {
@@ -1440,7 +1441,9 @@ function setLanguage(lang) {
 
   const langButton = document.querySelector('.lang-toggle');
   const flags = { 'ja': '🇯🇵 日本語', 'en': '🇺🇸 English', 'ru': '🇷🇺 Русский' };
-  langButton.textContent = '🌐 ' + (flags[lang] || flags['ja']);
+  if (langButton) {
+    langButton.textContent = '🌐 ' + (flags[lang] || flags['ja']);
+  }
 
   document.querySelectorAll('.lang-option').forEach(btn => {
     btn.classList.remove('active');
