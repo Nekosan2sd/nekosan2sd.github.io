@@ -53,7 +53,7 @@ html.dark-mode {
     --border-color: #333333;
 }
 
-/* ヘッダー被り防止 */
+/* ヘッダー被り防止 (スマホの巨大化バグが直ったので標準の100pxで統一) */
 html { scroll-padding-top: 100px; }
 
 /* Language-specific font sizes */
@@ -76,25 +76,18 @@ body {
 }
 
 /* =========================================
-   Animation 3: 爆速ローダー (Staggered Drop-in) 【バグ修正済】
+   Animation 3: 爆速ローダー (Staggered Drop-in)
 ========================================= */
 .stagger-item {
     animation-name: dropIn;
     animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-    /* forwardsではなくbothにすることで、ディレイ待機中も0%の状態(透明)を維持する */
     animation-fill-mode: both; 
 }
 
 @keyframes dropIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(-40px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .delay-1 { animation-delay: 0.1s; }
@@ -106,21 +99,27 @@ body {
 
 /* =========================================
    Header & Navigation
+   【修正済】stickyとアニメーションの衝突を防ぐため、
+   アニメーションは直下の .header-container にかける
 ========================================= */
 header {
     background: var(--primary-color);
     color: white;
     padding: 15px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
     transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
 }
 
 header h2 { margin: 0; font-size: 24px; letter-spacing: 0.5px; font-family: 'Urbanist', sans-serif; }
@@ -315,12 +314,27 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 footer { background: var(--primary-color); color: white; text-align: center; padding: 32px 20px; margin-top: auto; font-size: var(--p-size); }
 footer a { color: white; text-decoration: underline; font-weight: bold; }
 
-/* Responsive (iPad & Mobile) */
+/* =========================================
+   Responsive (iPad & Mobile)
+   【修正済】スマホでの巨大化バグを完全解決！
+   flex-wrap: nowrap を指定して1行の美しい横スクロール化
+========================================= */
 @media screen and (max-width: 768px) {
-    header { flex-direction: column; align-items: stretch; padding: 12px 16px; gap: 12px; }
+    header { padding: 12px 16px; }
+    .header-container { flex-direction: column; align-items: stretch; gap: 12px; }
     .header-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
-    nav { width: 100%; display: flex; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; gap: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    nav { 
+        width: 100%; 
+        display: flex; 
+        flex-wrap: nowrap; /* 巨大化の原因(wrap)を阻止 */
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding-bottom: 10px; 
+        gap: 10px; 
+        scrollbar-width: none; 
+        -webkit-overflow-scrolling: touch; 
+    }
     nav::-webkit-scrollbar { display: none; }
     nav a { padding: 10px 18px; background: rgba(255,255,255,0.15); border-radius: 20px; flex-shrink: 0; }
     
@@ -330,7 +344,6 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
     
     .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
     
-    html { scroll-padding-top: 140px; }
     .card { padding: 24px; margin-top: 24px; }
     .submit-btn { width: 100%; text-align: center; }
 }
@@ -339,45 +352,47 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
 
 <body>
 
-<header role="banner" id="siteHeader" class="stagger-item delay-1">
-  <div class="header-top">
-    <h2 data-ja="TKD株式会社" data-en="TKD Co., Ltd." data-ru="ТКД Компания" data-zh="TKD株式会社" data-ko="TKD 주식회사">TKD株式会社</h2>
-    <div class="header-controls">
-      <button class="theme-toggle" onclick="toggleTheme()" title="テーマ切り替え">🌙</button>
-      <div class="lang-selector">
-        <button class="lang-toggle" onclick="toggleLangDropdown()">🌐 日本語</button>
-        <div class="lang-dropdown" id="langDropdown">
-          <button onclick="setLanguage('ja')" class="lang-option active">🇯🇵 日本語</button>
-          <button onclick="setLanguage('en')" class="lang-option">🇺🇸 English</button>
-          <button onclick="setLanguage('ru')" class="lang-option">🇷🇺 Русский</button>
-          <button onclick="setLanguage('zh')" class="lang-option">🇨🇳 中文</button>
-          <button onclick="setLanguage('ko')" class="lang-option">🇰🇷 한국어</button>
+<header role="banner" id="siteHeader">
+  <div class="header-container stagger-item delay-1">
+    <div class="header-top">
+      <h2 data-ja="TKD株式会社" data-en="TKD Co., Ltd." data-ru="ТКД Компания" data-zh="TKD株式会社" data-ko="TKD 주식회사">TKD株式会社</h2>
+      <div class="header-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" title="テーマ切り替え">🌙</button>
+        <div class="lang-selector">
+          <button class="lang-toggle" onclick="toggleLangDropdown()">🌐 日本語</button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button onclick="setLanguage('ja')" class="lang-option active">🇯🇵 日本語</button>
+            <button onclick="setLanguage('en')" class="lang-option">🇺🇸 English</button>
+            <button onclick="setLanguage('ru')" class="lang-option">🇷🇺 Русский</button>
+            <button onclick="setLanguage('zh')" class="lang-option">🇨🇳 中文</button>
+            <button onclick="setLanguage('ko')" class="lang-option">🇰🇷 한국어</button>
+          </div>
         </div>
       </div>
     </div>
+    
+    <nav role="navigation">
+      <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании" data-zh="公司简介" data-ko="회사 소개">会社概要</a>
+      <a href="#directors" data-ja="役員一覧" data-en="Directors" data-ru="Директора" data-zh="董事会" data-ko="임원진">役員一覧</a>
+      <a href="#news" data-ja="ニュース" data-en="News" data-ru="Новости" data-zh="新闻动态" data-ko="뉴스">ニュース</a>
+      <a href="#vision" data-ja="企業理念" data-en="Vision" data-ru="Видение" data-zh="企业理念" data-ko="기업 이념">企業理念</a>
+      <a href="#why-us" data-ja="選ばれる理由" data-en="Why Us" data-ru="Почему мы" data-zh="选择理由" data-ko="선택 이유">選ばれる理由</a>
+      <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги" data-zh="业务内容" data-ko="사업 내용">事業内容</a>
+      <a href="#process" data-ja="開発の流れ" data-en="Process" data-ru="Процесс" data-zh="开发流程" data-ko="개발 절차">開発の流れ</a>
+      <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель" data-zh="作品集" data-ko="포트폴리오">ポートフォリオ</a>
+      <a href="#history" data-ja="沿革" data-en="History" data-ru="История" data-zh="发展沿革" data-ko="연혁">沿革</a>
+      <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки" data-zh="技术栈" data-ko="기술 스택">スキル</a>
+      <a href="#notice" data-ja="電子公告" data-en="Notices" data-ru="Уведомления" data-zh="电子公告" data-ko="전자 공고">電子公告</a>
+      <a href="#csr" data-ja="サステナビリティ" data-en="CSR" data-ru="CSR" data-zh="企业社会责任" data-ko="사회적 책임">サステナビリティ</a>
+      <a href="#welfare" data-ja="福利厚生" data-en="Welfare" data-ru="Благосостояние" data-zh="员工福利" data-ko="복리후생">福利厚生</a>
+      <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика" data-zh="企业数据" data-ko="실적">実績</a>
+      <a href="#reviews" data-ja="利用者の声" data-en="Reviews" data-ru="Отзывы" data-zh="用户评价" data-ko="이용자 후기">利用者の声</a>
+      <a href="#cat-gallery" data-ja="本日の猫" data-en="Cat Gallery" data-ru="Кошка дня" data-zh="今日猫咪" data-ko="오늘의 고양이">本日の猫</a>
+      <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО" data-zh="常见问题" data-ko="자주 묻는 질문">FAQ</a>
+      <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик" data-zh="开发者" data-ko="개발자">開発者</a>
+      <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты" data-zh="联系我们" data-ko="문의하기">お問い合わせ</a>
+    </nav>
   </div>
-  
-  <nav role="navigation">
-    <a href="#about" data-ja="会社概要" data-en="About" data-ru="О компании" data-zh="公司简介" data-ko="회사 소개">会社概要</a>
-    <a href="#directors" data-ja="役員一覧" data-en="Directors" data-ru="Директора" data-zh="董事会" data-ko="임원진">役員一覧</a>
-    <a href="#news" data-ja="ニュース" data-en="News" data-ru="Новости" data-zh="新闻动态" data-ko="뉴스">ニュース</a>
-    <a href="#vision" data-ja="企業理念" data-en="Vision" data-ru="Видение" data-zh="企业理念" data-ko="기업 이념">企業理念</a>
-    <a href="#why-us" data-ja="選ばれる理由" data-en="Why Us" data-ru="Почему мы" data-zh="选择理由" data-ko="선택 이유">選ばれる理由</a>
-    <a href="#service" data-ja="事業内容" data-en="Services" data-ru="Услуги" data-zh="业务内容" data-ko="사업 내용">事業内容</a>
-    <a href="#process" data-ja="開発の流れ" data-en="Process" data-ru="Процесс" data-zh="开发流程" data-ko="개발 절차">開発の流れ</a>
-    <a href="#portfolio" data-ja="ポートフォリオ" data-en="Portfolio" data-ru="Портфель" data-zh="作品集" data-ko="포트폴리오">ポートフォリオ</a>
-    <a href="#history" data-ja="沿革" data-en="History" data-ru="История" data-zh="发展沿革" data-ko="연혁">沿革</a>
-    <a href="#skills" data-ja="スキル" data-en="Skills" data-ru="Навыки" data-zh="技术栈" data-ko="기술 스택">スキル</a>
-    <a href="#notice" data-ja="電子公告" data-en="Notices" data-ru="Уведомления" data-zh="电子公告" data-ko="전자 공고">電子公告</a>
-    <a href="#csr" data-ja="サステナビリティ" data-en="CSR" data-ru="CSR" data-zh="企业社会责任" data-ko="사회적 책임">サステナビリティ</a>
-    <a href="#welfare" data-ja="福利厚生" data-en="Welfare" data-ru="Благосостояние" data-zh="员工福利" data-ko="복리후생">福利厚生</a>
-    <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика" data-zh="企业数据" data-ko="실적">実績</a>
-    <a href="#reviews" data-ja="利用者の声" data-en="Reviews" data-ru="Отзывы" data-zh="用户评价" data-ko="이용자 후기">利用者の声</a>
-    <a href="#cat-gallery" data-ja="本日の猫" data-en="Cat Gallery" data-ru="Кошка дня" data-zh="今日猫咪" data-ko="오늘의 고양이">本日の猫</a>
-    <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО" data-zh="常见问题" data-ko="자주 묻는 질문">FAQ</a>
-    <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик" data-zh="开发者" data-ko="개발자">開発者</a>
-    <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты" data-zh="联系我们" data-ko="문의하기">お問い合わせ</a>
-  </nav>
 </header>
 
 <div class="hero stagger-item delay-2">
@@ -452,14 +467,14 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
       <h2 data-ja="📰 ニュース・お知らせ" data-en="📰 News & Topics" data-ru="📰 Новости" data-zh="📰 新闻动态" data-ko="📰 뉴스 및 공지">📰 ニュース・お知らせ</h2>
       <ul class="news-list">
         <li class="news-item">
+          <span class="news-date">2026.07.28</span>
+          <span class="news-tag" style="background:#ff6b6b;" data-ja="アップデート" data-en="Update" data-ru="Обновление" data-zh="更新" data-ko="업데이트">アップデート</span>
+          <span class="news-title" data-ja="スマホでの表示崩れ（ヘッダー巨大化バグ）を完全修正！UIが進化しました。" data-en="Fixed mobile header bug! UI evolved." data-ru="Исправлен баг на мобильных." data-zh="完全修复手机端显示崩溃（头部巨大化Bug）！UI体验升级。" data-ko="스마트폰 표시 깨짐(헤더 거대화 버그) 완전 수정! UI가 진화했습니다.">スマホでの表示崩れ（ヘッダー巨大化バグ）を完全修正！UIが進化しました。</span>
+        </li>
+        <li class="news-item">
           <span class="news-date">2026.07.26</span>
           <span class="news-tag" data-ja="お知らせ" data-en="Notice" data-ru="Извещение" data-zh="公告" data-ko="공지">お知らせ</span>
           <span class="news-title" data-ja="5ヶ国語対応（日・英・露・中・韓）および全バグ修正を完了。" data-en="Multilingual support (5 languages) and comprehensive bug fixes completed." data-ru="Обновление сайта." data-zh="正式引入5种语言支持（日/英/俄/中/韩）并完成所有Bug修复。" data-ko="5개 국어 지원(일/영/러/중/한) 및 모든 버그 수정 완료.">5ヶ国語対応（日・英・露・中・韓）および全バグ修正を完了。</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2026.07.24</span>
-          <span class="news-tag" data-ja="プレス" data-en="Press" data-ru="Пресс" data-zh="新闻" data-ko="보도">プレス</span>
-          <span class="news-title" data-ja="TKD株式会社 公式ホームページをGitHub Pagesにて開設。" data-en="Launched TKD official site on GitHub Pages." data-ru="Сайт запущен на GitHub Pages." data-zh="TKD株式会社官方网站在GitHub Pages正式上线。" data-ko="TKD 주식회사 공식 웹사이트를 GitHub Pages에 오픈했습니다.">TKD株式会社 公式ホームページをGitHub Pagesにて開設。</span>
         </li>
       </ul>
     </div>
@@ -781,11 +796,11 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
         <div class="form-group">
           <label data-ja="お問い合わせ種別" data-en="Category" data-zh="咨询类别" data-ko="문의 유형">お問い合わせ種別</label>
           <select id="contactCategory" class="form-control">
-            <option value="💡 このサイトの改善案" data-ja="💡 このサイトの改善案" data-en="💡 Site Improvement Ideas" data-zh="💡 本网站改进建议" data-ko="💡 이 사이트 개선안">💡 このサイトの改善案</option>
-            <option value="Web制作のご相談" data-ja="Web制作のご相談" data-en="Web Development" data-zh="网站制作咨询" data-ko="웹 제작 상담">Web制作のご相談</option>
-            <option value="ゲーム制作のご相談" data-ja="ゲーム制作のご相談" data-en="Game Development" data-zh="游戏制作咨询" data-ko="게임 제작 상담">ゲーム制作のご相談</option>
-            <option value="猫に関する雑談" data-ja="猫に関する雑談" data-en="Cat Chat" data-zh="关于猫咪的闲聊" data-ko="고양이에 관한 잡담">猫に関する雑談</option>
-            <option value="その他" data-ja="その他" data-en="Other" data-zh="其他" data-ko="기타">その他</option>
+            <option value="💡 このサイトの改善案" data-ja="💡 このサイトの改善案" data-en="💡 Site Improvement Ideas" data-ru="💡 Улучшение сайта" data-zh="💡 本网站改进建议" data-ko="💡 이 사이트 개선안">💡 このサイトの改善案</option>
+            <option value="Web制作のご相談" data-ja="Web制作のご相談" data-en="Web Development" data-ru="Веб-разработка" data-zh="网站制作咨询" data-ko="웹 제작 상담">Web制作のご相談</option>
+            <option value="ゲーム制作のご相談" data-ja="ゲーム制作のご相談" data-en="Game Development" data-ru="Разработка игр" data-zh="游戏制作咨询" data-ko="게임 제작 상담">ゲーム制作のご相談</option>
+            <option value="猫に関する雑談" data-ja="猫に関する雑談" data-en="Cat Chat" data-ru="Кошачьи разговоры" data-zh="关于猫咪的闲聊" data-ko="고양이에 관한 잡담">猫に関する雑談</option>
+            <option value="その他" data-ja="その他" data-en="Other" data-ru="Другое" data-zh="其他" data-ko="기타">その他</option>
           </select>
         </div>
         <div class="form-group">
@@ -831,7 +846,7 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================
-// 2. Smart Header & Back-to-Top (requestAnimationFrame版・アニメーション衝突対策済)
+// 2. Smart Header & Back-to-Top
 // ==========================================
 let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
 let ticking = false;
@@ -850,15 +865,12 @@ window.addEventListener('scroll', () => {
         backToTopBtn.classList.remove('visible');
       }
 
-      // ページ読み込み直後の初期位置(0以下)では JSによる transform をセットしない。
-      // これによりCSSのオープニングアニメーション(stagger)と衝突せず確実に動く！
+      // ヘッダー隠蔽処理（アニメーション用クラスを分離したため競合なし）
       if (currentScroll <= 0) {
-        header.style.transform = ''; 
+        header.style.transform = 'translateY(0)';
       } else if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-        // 下スクロール時は隠す
         header.style.transform = 'translateY(-100%)';
       } else {
-        // 上スクロール時は表示する
         header.style.transform = 'translateY(0)';
       }
       
@@ -874,7 +886,7 @@ function scrollToTop() {
 }
 
 // ==========================================
-// 3. Multi-language Support
+// 3. Multi-language Support (完全版)
 // ==========================================
 function setLanguage(lang) {
   currentLanguage = lang;
@@ -968,7 +980,6 @@ function closePortfolioModal() {
   document.getElementById('portfolioModal').classList.remove('active'); 
 }
 
-// モーダルの背景クリックで閉じる処理
 window.onclick = function(event) {
   const modal = document.getElementById('portfolioModal');
   if (event.target == modal) {
