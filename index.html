@@ -53,10 +53,8 @@ html.dark-mode {
     --border-color: #333333;
 }
 
-/* ヘッダー被り防止 (iPad・スマホ等で可変対応できるよう少し大きめ) */
-html {
-    scroll-padding-top: 100px; 
-}
+/* ヘッダー被り防止 */
+html { scroll-padding-top: 100px; }
 
 /* Language-specific font sizes */
 html[data-language="ja"] { --base-font-size: 16px; --h1-size: 42px; --h2-size: 28px; --h3-size: 20px; --h4-size: 18px; --p-size: 16px; --small-size: 14px; }
@@ -78,16 +76,22 @@ body {
 }
 
 /* =========================================
-   Animation 3: 爆速ローダー (Staggered Drop-in)
+   Animation 3: 爆速ローダー (Staggered Drop-in) 【バグ修正済】
 ========================================= */
 .stagger-item {
-    opacity: 0;
-    transform: translateY(-40px);
-    animation: dropIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-name: dropIn;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* forwardsではなくbothにすることで、ディレイ待機中も0%の状態(透明)を維持する */
+    animation-fill-mode: both; 
 }
 
 @keyframes dropIn {
-    to {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
         opacity: 1;
         transform: translateY(0);
     }
@@ -184,7 +188,6 @@ nav a:hover { text-decoration: underline; opacity: 0.9; }
     background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
 }
-
 .hero img {
     max-width: 280px;
     width: 100%;
@@ -193,7 +196,6 @@ nav a:hover { text-decoration: underline; opacity: 0.9; }
     margin-bottom: 24px;
     box-shadow: var(--shadow);
 }
-
 .hero h1 { font-size: var(--h1-size); margin: 12px 0; font-weight: 900; }
 .hero p { font-size: var(--p-size); color: var(--text-color); opacity: 0.9; }
 
@@ -242,16 +244,13 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 .card h4 { font-size: var(--h4-size); margin-bottom: 10px; }
 .card p { font-size: var(--p-size); line-height: 1.8; }
 
-/* Grids (iPad対応で最小幅を240px程度に調整) */
 .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 28px; }
 .box-item { background: var(--bg-color); padding: 28px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
 
-/* Company Table */
 .company-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: var(--p-size); }
 .company-table th, .company-table td { padding: 18px; border-bottom: 1px solid var(--border-color); text-align: left; }
 .company-table th { background-color: var(--bg-color); color: var(--primary-color); width: 30%; font-weight: bold; }
 
-/* News & Timeline */
 .news-list, .timeline { list-style: none; padding: 0; margin-top: 24px; }
 .news-item { padding: 18px 0; border-bottom: 1px solid var(--border-color); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .news-item:last-child { border-bottom: none; }
@@ -263,25 +262,21 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 .timeline li:before { content: ''; position: absolute; left: -8px; top: 26px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary-color); box-shadow: 0 0 0 4px var(--bg-color); }
 .timeline li strong { color: var(--primary-color); display: block; margin-bottom: 8px; font-size: 18px; }
 
-/* Process Steps */
 .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 28px; }
 .step-card { background: var(--bg-color); padding: 24px; border-radius: 12px; border-top: 4px solid var(--primary-color); }
 .step-num { font-size: 14px; font-weight: bold; color: var(--primary-color); letter-spacing: 1px; margin-bottom: 10px; }
 
-/* Portfolio */
 .portfolio-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 28px; cursor: pointer; box-shadow: var(--shadow); text-align: left; }
 .portfolio-card:hover { transform: translateY(-6px); border-color: var(--primary-color); box-shadow: var(--hover-shadow); }
 .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .tech-tag { background: var(--primary-color); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: bold; }
 
-/* Skills Section */
 .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 28px; }
 .skill-category { background: var(--bg-color); padding: 24px; border-radius: 12px; border-left: 4px solid var(--primary-color); }
 .skill-list { list-style: none; padding: 0; margin: 0; }
 .skill-list li { padding: 8px 0; padding-left: 26px; position: relative; font-size: var(--p-size); }
 .skill-list li:before { content: '✓'; position: absolute; left: 0; color: var(--primary-color); font-weight: bold; }
 
-/* FAQ Accordion */
 .faq-list { margin-top: 24px; }
 .faq-item { border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
 .faq-question { width: 100%; text-align: left; background: var(--bg-color); padding: 20px 24px; border: none; font-size: var(--p-size); font-weight: bold; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
@@ -290,14 +285,12 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 .faq-answer { display: none; padding: 20px 24px; background: var(--card-bg); border-top: 1px solid var(--border-color); line-height: 1.7; font-size: var(--p-size); }
 .faq-item.active .faq-answer { display: block; }
 
-/* Cat API Gallery Box */
 .cat-gallery-box { text-align: center; background: var(--bg-color); padding: 24px; border-radius: 16px; margin-top: 24px; }
 .cat-img-container { width: 100%; max-width: 450px; height: 300px; margin: 20px auto; border-radius: 16px; overflow: hidden; background: var(--card-bg); display: flex; align-items: center; justify-content: center; border: 2px dashed var(--border-color); }
 .cat-img-container img { width: 100%; height: 100%; object-fit: cover; }
 .btn-secondary { background: var(--primary-color); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: var(--p-size); }
 .btn-secondary:hover { background: var(--primary-light); }
 
-/* Contact Form */
 .contact-form { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-group label { font-weight: bold; font-size: var(--small-size); }
@@ -310,6 +303,7 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; padding: 20px; }
 .modal.active { display: flex; }
 .modal-content { background: var(--card-bg); padding: 36px; border-radius: 16px; max-width: 550px; width: 100%; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.4); animation: slideUp 0.3s ease-out; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .close-modal { position: absolute; top: 15px; right: 24px; font-size: 32px; cursor: pointer; line-height: 1; color: var(--text-sub); }
 .close-modal:hover { color: var(--primary-color); }
 
@@ -321,14 +315,11 @@ section { padding: 40px 20px; max-width: 1100px; margin: auto; }
 footer { background: var(--primary-color); color: white; text-align: center; padding: 32px 20px; margin-top: auto; font-size: var(--p-size); }
 footer a { color: white; text-decoration: underline; font-weight: bold; }
 
-/* =========================================
-   Responsive (iPad & Mobile)
-========================================= */
+/* Responsive (iPad & Mobile) */
 @media screen and (max-width: 768px) {
     header { flex-direction: column; align-items: stretch; padding: 12px 16px; gap: 12px; }
     .header-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     
-    /* 横スクロールメニューの最適化 */
     nav { width: 100%; display: flex; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; gap: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     nav::-webkit-scrollbar { display: none; }
     nav a { padding: 10px 18px; background: rgba(255,255,255,0.15); border-radius: 20px; flex-shrink: 0; }
@@ -339,8 +330,7 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
     
     .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
     
-    html { scroll-padding-top: 140px; } /* スマホ用のヘッダー高さ補正 */
-    
+    html { scroll-padding-top: 140px; }
     .card { padding: 24px; margin-top: 24px; }
     .submit-btn { width: 100%; text-align: center; }
 }
@@ -438,19 +428,19 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
 
       <div class="grid-container">
         <div class="box-item">
-          <div class="director-icon">👨‍💻</div>
+          <div style="font-size: 50px; margin-bottom: 12px;">👨‍💻</div>
           <h4 data-ja="代表取締役 CEO" data-en="CEO & Founder" data-ru="Генеральный директор" data-zh="首席执行官 CEO" data-ko="대표이사 CEO">代表取締役 CEO</h4>
           <h3>Nekosan2sd</h3>
           <p data-ja="統括・開発担当。勢いと思いつきで全てを形にする男。" data-en="Development Lead. Shapes everything with momentum and ideas." data-ru="Ведущий разработчик. Формирует всё благодаря инициативе." data-zh="全面负责与开发。凭势头和灵感塑造一切的男人。" data-ko="총괄 및 개발 담당. 기세와 아이디어로 모든 것을 형태화하는 남자.">統括・開発担当。勢いと思いつきで全てを形にする男。</p>
         </div>
         <div class="box-item">
-          <div class="director-icon">🐱</div>
+          <div style="font-size: 50px; margin-bottom: 12px;">🐱</div>
           <h4 data-ja="最高猫責任者 CCO" data-en="Chief Cat Officer (CCO)" data-ru="Главный по кошкам" data-zh="首席猫咪官 CCO" data-ko="최고고양이책임자 CCO">最高猫責任者 CCO</h4>
           <h3 data-ja="みけ" data-en="Mike (Calico)" data-ru="Мике" data-zh="三花 (Mike)" data-ko="미케">みけ</h3>
           <p data-ja="癒やし・キーボード占拠担当。日向ぼっこのプロ。" data-en="In charge of healing and keyboard occupation. A pro at sunbathing." data-ru="Отвечает за исцеление и клавиатуру." data-zh="负责治愈及占领键盘。晒太阳的专家。" data-ko="힐링 및 키보드 점거 담당. 일광욕의 프로.">癒やし・キーボード占拠担当。日向ぼっこのプロ。</p>
         </div>
         <div class="box-item">
-          <div class="director-icon">🐈</div>
+          <div style="font-size: 50px; margin-bottom: 12px;">🐈</div>
           <h4 data-ja="最高資金責任者 CFO" data-en="Chief Feline Officer (CFO)" data-ru="Финансовый кот" data-zh="首席财务官 CFO" data-ko="최고재무책임자 CFO">最高資金責任者 CFO</h4>
           <h3 data-ja="くろ" data-en="Kuro (Black)" data-ru="Куро" data-zh="小黑 (Kuro)" data-ko="쿠로">くろ</h3>
           <p data-ja="猫缶の在庫管理および深夜のパトロール担当。" data-en="Cat food inventory management and night patrol." data-ru="Управление запасами кошачьей еды." data-zh="负责猫罐头库存管理及深夜巡逻。" data-ko="고양이 통조림 재고 관리 및 야간 순찰 담당.">猫缶の在庫管理および深夜のパトロール担当。</p>
@@ -841,7 +831,7 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 // ==========================================
-// 2. Smart Header & Back-to-Top (requestAnimationFrame版・フリーズ対策)
+// 2. Smart Header & Back-to-Top (requestAnimationFrame版・アニメーション衝突対策済)
 // ==========================================
 let lastScroll = window.pageYOffset || document.documentElement.scrollTop;
 let ticking = false;
@@ -860,14 +850,15 @@ window.addEventListener('scroll', () => {
         backToTopBtn.classList.remove('visible');
       }
 
-      // iOSバウンス対策: スクロール値が0以下の場合は常に表示
+      // ページ読み込み直後の初期位置(0以下)では JSによる transform をセットしない。
+      // これによりCSSのオープニングアニメーション(stagger)と衝突せず確実に動く！
       if (currentScroll <= 0) {
-        header.style.transform = 'translateY(0)';
+        header.style.transform = ''; 
       } else if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-        // 下スクロール
+        // 下スクロール時は隠す
         header.style.transform = 'translateY(-100%)';
       } else {
-        // 上スクロール
+        // 上スクロール時は表示する
         header.style.transform = 'translateY(0)';
       }
       
@@ -966,7 +957,6 @@ const modalData = {
 function openPortfolioModal(projectId) {
   const project = modalData[projectId];
   if (project) {
-    // 現在の言語のデータを取得、無ければ日本語フォールバック
     const langData = project[currentLanguage] || project['ja'];
     document.getElementById('modalTitle').textContent = langData.title;
     document.getElementById('modalDesc').textContent = langData.desc;
@@ -1000,7 +990,6 @@ function fetchRandomCat() {
   const container = document.getElementById('catImageContainer');
   container.innerHTML = '<span>🐱 ...loading...</span>';
   
-  // API Fetch (タイムアウト処理付きで安全に)
   fetch('https://api.thecatapi.com/v1/images/search')
     .then(r => r.json())
     .then(d => { 
