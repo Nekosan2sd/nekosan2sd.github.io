@@ -13,6 +13,7 @@
 <meta property="og:description" content="Web制作、プログラミング、ゲーム開発、猫の布教活動などを行っている架空企業">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nekosan2sd.github.io">
+<meta property="og:image" content="IMG_2311.png">
 
 <title data-ja="TKD株式会社 | Web制作・プログラミング・ゲーム開発" data-en="TKD Co., Ltd. | Web Development, Programming, Game Development" data-ru="ТКД Co., Ltd. | Веб-разработка, программирование, разработка игр" data-zh="TKD株式会社 | 网站制作・编程・游戏开发" data-ko="TKD 주식회사 | 웹 제작·프로그래밍·게임 개발">TKD株式会社 | Web制作・プログラミング・ゲーム開発</title>
 
@@ -388,7 +389,7 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
       <a href="#stats" data-ja="実績" data-en="Stats" data-ru="Статистика" data-zh="企业数据" data-ko="실적">実績</a>
       <a href="#reviews" data-ja="利用者の声" data-en="Reviews" data-ru="Отзывы" data-zh="用户評価" data-ko="이용자 후기">利用者の声</a>
       <a href="#cat-gallery" data-ja="本日の猫" data-en="Cat Gallery" data-ru="Кошка дня" data-zh="今日猫咪" data-ko="오늘의 고양이">本日の猫</a>
-      <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО" data-zh="常见问题" data-ko="자주 묻는 질문">FAQ</a>
+      <a href="#faq" data-ja="FAQ" data-en="FAQ" data-ru="ЧАВО" data-zh="常见问题" data-ko="자주 묻는質問">FAQ</a>
       <a href="#developer" data-ja="開発者" data-en="Developer" data-ru="Разработчик" data-zh="开发者" data-ko="개발자">開発者</a>
       <a href="#contact" data-ja="お問い合わせ" data-en="Contact" data-ru="Контакты" data-zh="联系我们" data-ko="문의하기">お問い合わせ</a>
     </nav>
@@ -510,7 +511,7 @@ footer a { color: white; text-decoration: underline; font-weight: bold; }
         <div class="box-item">
           <div style="font-size: 40px; margin-bottom: 12px;">🎨</div>
           <h4 data-ja="モダンなUX & UI" data-en="Modern UX & UI" data-ru="UX и UI" data-zh="现代化的UX & UI" data-ko="모던한 UX & UI">モダンなUX & UI</h4>
-          <p data-ja="ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。" data-en="Dark mode, multi-language support, achieving a comfortable user experience from the user's perspective." data-ru="Удобный." data-zh="支持深色模式及多语言切换，实现立足于用户视角的舒适操作体验。" data-ko="다크 모드 지원 및 다국어 전환 등 사용자 눈높이에 맞춘 쾌적한 조작감을 구현합니다.">ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。</p>
+          <p data-ja="ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。" data-en="Dark mode, multi-language support, achieving a comfortable user experience from the user's perspective." data-ru="Удобный." data-zh="支持深色模式及多语言切换，实现立足于用户视角的舒适操作体验。" data-ko="다크 모드 지원 및 다국어 전환 등 사용자 눈높이에 맞춘 쾌적한 조작感を 구현합니다.">ダークモード対応や多言語切り替えなど、ユーザー目線に立った心地よい操作感を実現します。</p>
         </div>
         <div class="box-item">
           <div style="font-size: 40px; margin-bottom: 12px;">💡</div>
@@ -962,7 +963,7 @@ const modalData = {
     en: { title: "Game 'Explosion Drink'", desc: "A casual game developed in Unity. Built on momentum, surprisingly addictive." },
     ru: { title: "Игра 'Взрывной напиток'", desc: "Казуальная игра на Unity с высокой реиграбельностью." },
     zh: { title: "游戏《爆炸饮料》", desc: "使用Unity制作的休闲游戏。虽然是凭势头做出来的，却意外地令人上瘾，充满魅力。" },
-    ko: { title: "게임 '폭발 음료'", desc: "Unity로 제작한 캐주얼 게임. 기세로 만들었음에도 의외로 중독성이 있어 반복해서 즐기게 되는 매력이 있습니다." }
+    ko: { title: "게임 '폭발 음료'", desc: "Unity로 제작한 캐주얼 게임. 기세로 만들었음にも 의외로 중독성이 있어 반복해서 즐기게 되는 매력이 있습니다." }
   }
 };
 
@@ -1006,6 +1007,8 @@ function fetchRandomCat() {
     .then(d => { 
       if (d && d[0] && d[0].url) {
         container.innerHTML = `<img src="${d[0].url}" alt="Cat">`;
+      } else {
+        container.innerHTML = '<span>😿 にゃんこを呼べませんでした</span>';
       }
     })
     .catch(err => {
